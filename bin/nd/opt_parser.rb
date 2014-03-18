@@ -20,7 +20,7 @@ module Nd
 
       # Optional argument;
       opts.on("-d", "--date [yyyy_mm_dd]","date") do |s|
-        options.date = Date.strptime(s, "%Y_%m_%d")
+        options.date = Nd.parse_date s
       end
 
     end

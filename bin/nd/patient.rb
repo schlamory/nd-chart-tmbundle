@@ -1,6 +1,7 @@
 require 'optparse'
 require 'fileutils'
 require 'yaml'
+require 'nd/util'
 
 class String
   def unindent
@@ -12,12 +13,33 @@ module Nd
   ND_PATIENT_DIR = File.expand_path("~/projects/laura/patients")
 
   class Patient
-    attr_accessor :first_name, :last_name, :dob
+    attr_accessor :first_name, :last_name, :dob, :dir_path
     attr_reader :problems, :medications
+
+    def self.patient_for_dir(dir)
+      dir ||= Dir.pwd
+      while(dir != "/")
+        if File.exists? dir + "/patient.yml"
+          return self.new_from_dir dir
+        end
+        dir = File.expand_path("..",dir)
+      end
+      nil
+    end
 
     def initialize
       @problems = []
       @medications = []
+    end
+
+    def self.new_from_dir(dir)
+      patient = self.new
+      patient.dir_path = dir
+      h = YAML.load_file(dir + "/patient.yml")
+      patient.first_name = h["first_name"]
+      patient.last_name = h["last_name"]
+      patient.dob = Nd.parse_date(dob)
+      patient
     end
 
     def self.new_with_options(options)
@@ -39,7 +61,7 @@ module Nd
     end
 
     def dir_path
-      ND_PATIENT_DIR + "/#{last_name}, #{first_name}"
+      @dir_path || ND_PATIENT_DIR + "/#{last_name}, #{first_name}"
     end
 
     def persisted?
@@ -126,8 +148,8 @@ module Nd
     def self.set_options(opts,options)
       super(opts,options)
       # Optional argument;
-      opts.on("-b", "--birthdate [yyyy_mm_dd]","Date of birth") do |s|
-        options.dob = Date.strptime(s, "%Y_%m_%d")
+      opts.on("-b", "--birthdate [yyyy_mm_dd]","Date of birth") do |dob|
+        options.dob = Nd.parse_date(dob)
       end
 
     end
