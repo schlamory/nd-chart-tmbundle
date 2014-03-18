@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
+puts "Hello world"
+</string>
+	<key>name</key>
+	<string>New Progress Note</string>
+	<key>uuid</key>
+	<string>3AE52612-1C16-44A3-8116-4E4DD9961DB5</string>
+</dict>
+</plist>
