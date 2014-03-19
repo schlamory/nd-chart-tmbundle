@@ -110,6 +110,10 @@ module Nd
       end
     end
 
+    def patient_file_header
+      ERB.new(File.read(File.expand_path('../headers/patient/patient.yml',__FILE__))).result(self)
+    end
+
     def to_yaml_without_problems_or_medications
       <<-yaml.unindent
         first_name: #{first_name}

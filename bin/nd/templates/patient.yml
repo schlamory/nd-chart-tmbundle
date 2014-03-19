@@ -1,5 +1,0 @@
-# <%= @patient.last_name %>, <%= @patient.first_name %> : Patient.yml
-
-first_name: <%= @patient.first_name %>
-last_name: <%= @patient.last_name %>
-dob: <%= @patient.dob_string %>

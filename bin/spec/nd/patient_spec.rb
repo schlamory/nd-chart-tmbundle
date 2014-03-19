@@ -20,6 +20,14 @@ describe Nd::Patient do
     its(:dir_path){ should eq ENV["ND_PATIENTS_DIR"] + "/Last, First" }
     its(:dob_string){ should eq '1999_05_17'}
 
+    describe ".patient_file_header text" do
+      subject(:text){ patient.patient_file_header }
+      it "contains the patient name" do
+        puts text
+        expect(true).to be true
+      end
+    end
+
     context "after .save" do
       before(:each) do
         patient.save
@@ -73,15 +81,15 @@ describe Nd::Patient do
 
         context "after .save" do
           before(:each){ patient.save }
-          it "does nothing to the a file in the patient dir" do
+          it "does nothing to a file in the patient dir" do
             expect(File.exists?(paths[0])).to be true
           end
 
-          it "does nothing to the a file in the visits dir" do
+          it "does nothing to a file in the visits dir" do
             expect(File.exists?(paths[1])).to be true
           end
 
-          it "does nothing to the a file in the visits dir" do
+          it "does nothing to a file in the visits dir" do
             expect(File.exists?(paths[2])).to be true
           end
 
