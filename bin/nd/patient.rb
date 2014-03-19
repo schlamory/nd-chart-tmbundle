@@ -44,7 +44,7 @@ module Nd
       patient
     end
 
-    def self.new_with_options(options)
+    def self.new_from_struct(options)
       patient = self.new
       patient.first_name = options.first_name
       patient.last_name = options.last_name

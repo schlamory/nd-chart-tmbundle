@@ -6,8 +6,8 @@ describe Nd::Patient do
   it {should respond_to :first_name }
   it {should respond_to :last_name}
 
-  describe ".new_with_options" do
-    subject(:patient){ Nd::Patient.new_with_options(options) }
+  describe ".new_from_struct" do
+    subject(:patient){ Nd::Patient.new_from_struct(options) }
     let(:options){
       options = OpenStruct.new
       options.first_name = "First"

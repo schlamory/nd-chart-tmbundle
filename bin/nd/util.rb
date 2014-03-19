@@ -1,6 +1,8 @@
 module Nd
   def self.parse_date(d)
-    formats = ["%Y_%m_%d","%Y/%m/%d","%Y-%m-%d","%Y%m%d","%%m_%d_Y","%m/%d/%Y","%m-%d-%Y"]
+    #Accept dates
+
+    formats = ["%Y_%m_%d","%Y/%m/%d","%Y-%m-%d","%Y%m%d","%m/%d/%Y","%m-%d-%Y"]
     formats.each do |f|
       begin
         return Date.strptime(d.to_s,f)

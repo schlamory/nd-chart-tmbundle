@@ -8,9 +8,21 @@ module Nd
 
   class Visit
     attr_accessor :date, :patient
+
+    def self.new_from_struct(options)
+      visit = self.new
+      visit.date = options.date
+      visit.patient = options.patient rescue nil
+      visit
+    end
+
+    def date_string
+      date.strftime '%Y_%m_%d'
+    end
+
   end
 
-  class NewVisitOptParser < VisitOptParser
+  class NewVisitOptParser < Nd::OptParser
 
     def self.parse(argv)
       argv.shift
