@@ -8,9 +8,8 @@ module Nd
       end
     end
 
-    formats = ["%m_%d","%m/%d","%%m-%d"]
+    formats = ["%m_%d","%m/%d","%m-%d"]
     formats.each do |f|
-      puts f
       begin
         mday = Date.strptime(d.to_s,f)
         return Date.new(Date.today.year,mday.month,mday.day)
