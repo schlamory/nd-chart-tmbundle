@@ -44,6 +44,10 @@ module Nd
       patient
     end
 
+    def dob_string
+      dob.strftime '%Y_%m_%d'
+    end
+
     def self.new_from_struct(options)
       patient = self.new
       patient.first_name = options.first_name
@@ -53,8 +57,8 @@ module Nd
     end
 
     def save
-      [dir_path,visits_dir_path,labs_dir_path].each do |path|
-        FileUtils.mkdir_p(path) unless File.directory?(path)
+      [dir_path,visits_dir_path,labs_dir_path].each do |dir|
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
       end
 
       save_patient_problems_medications

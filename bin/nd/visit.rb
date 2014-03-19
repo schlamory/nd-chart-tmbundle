@@ -20,6 +20,34 @@ module Nd
       date.strftime '%Y_%m_%d'
     end
 
+    def patient_dir_path
+      patient.dir_path
+    end
+
+    def dir_path
+      patient.visits_dir_path + "/" + date_string
+    end
+
+    def snapshot_dir_path
+      dir_path + "/.snapshot"
+    end
+
+    def progress_note_md_path
+      dir_path + "/progress_note.md"
+    end
+
+    def save
+      [dir_path,snapshot_dir_path].each do |dir|
+        FileUtils.mkdir_p(dir) unless File.directory?(dir)
+      end
+
+      initialize_progress_note unless File.exist? progress_note_md_path
+    end
+
+    def initialize_progress_note
+      File.open(progress_note_md_path,'w')
+    end
+
   end
 
   class NewVisitOptParser < Nd::OptParser

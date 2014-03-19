@@ -12,11 +12,13 @@ describe Nd::Patient do
       options = OpenStruct.new
       options.first_name = "First"
       options.last_name = "Last"
+      options.dob = Date.new(1999,5,17)
       options
     }
     its(:first_name){ should eq "First" }
     its(:last_name){ should eq "Last" }
     its(:dir_path){ should eq ENV["ND_PATIENTS_DIR"] + "/Last, First" }
+    its(:dob_string){ should eq '1999_05_17'}
 
     context "after .save" do
       before(:each) do
