@@ -10,9 +10,11 @@ class String
 end
 
 module Nd
-  ND_PATIENT_DIR = File.expand_path("~/projects/laura/patients")
 
   class Patient
+
+    ND_PATIENTS_DIR = ENV["ND_PATIENTS_DIR"] || File.expand_path("~/projects/laura/patients")
+
     attr_accessor :first_name, :last_name, :dob, :dir_path
     attr_reader :problems, :medications
 
@@ -55,13 +57,20 @@ module Nd
         FileUtils.mkdir_p(path) unless File.directory?(path)
       end
 
-      write_patient_file patient_file_path
-      write_medications_file medications_file_path
-      write_problems_file problems_file_path
+      save_patient_problems_medications
+    end
+
+    def save_patient_problems_medications(dir=nil)
+      dir = File.expand_path(dir || dir_path)
+      FileUtils.mkdir_p(dir) unless File.directory?(dir)
+
+      write_patient_file patient_file_path dir
+      write_medications_file medications_file_path dir
+      write_problems_file problems_file_path dir
     end
 
     def dir_path
-      @dir_path || ND_PATIENT_DIR + "/#{last_name}, #{first_name}"
+      @dir_path || ND_PATIENTS_DIR + "/#{last_name}, #{first_name}"
     end
 
     def persisted?
