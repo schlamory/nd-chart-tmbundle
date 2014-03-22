@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'fuzzy-string-match'
 gem 'kramdown'
 gem 'pdfkit'
 gem 'rspec'
