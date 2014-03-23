@@ -2,99 +2,32 @@ require_relative "../spec_helper.rb"
 require "ostruct"
 
 describe Nd::Patient do
-
-  it {should respond_to :first_name }
-  it {should respond_to :last_name}
-
-  describe ".new_from_struct" do
-    subject(:patient){ Nd::Patient.new_from_struct(options) }
-    let(:options){
-      options = OpenStruct.new
-      options.first_name = "First"
-      options.last_name = "Last"
-      options.dob = Date.new(1999,5,17)
-      options
-    }
-    its(:first_name){ should eq "First" }
-    its(:last_name){ should eq "Last" }
-    its(:dir_path){ should eq ENV["ND_PATIENTS_DIR"] + "/Last, First" }
-    its(:dob_string){ should eq '1999_05_17'}
-
-    describe ".patient_file_header text" do
-      subject(:text){ patient.patient_file_header }
-      it "contains the patient name" do
-        puts text
-        expect(true).to be true
-      end
+  subject(:patient){
+    Nd::Patient.new.tap do |p|
+      p.first_name = "Horatio"
+      p.last_name = "Alger"
     end
+  }
 
-    context "after .save" do
-      before(:each) do
-        patient.save
+  its(:name){ should eq 'Alger, Horatio'}
+  its(:dob){ should be_nil}
+  its(:age){ should be_nil}
+
+  context "after patient.dob = '1899_10_12'" do
+    before(:each){ patient.dob = '1899_10_12' }
+    its(:dob){ should eq '1899_10_12'}
+    its(:date_of_birth){ should eq Date.new(1899,10,12)}
+    its(:age){ should eq patient.age_on_date Date.today }
+
+    describe ".age_on_date" do
+      subject(:age){ patient.age_on_date Date.strptime(datestring, "%Y_%m_%d")}
+      context "2014_12_10" do
+        let(:datestring){ "2014_12_10" }
+        it{ should eq 115}
       end
-
-      it "creates a patient directory" do
-        expect(Dir.exists? patient.dir_path).to be true
-      end
-
-      it "creates a patient file" do
-        expect(File.exists? patient.patient_file_path).to be true
-      end
-
-      it "creates a medications file" do
-        expect(File.exists? patient.medications_file_path).to be true
-      end
-
-      it "creates a problems file" do
-        expect(File.exists? patient.medications_file_path).to be true
-      end
-
-      it "creates a visits directory" do
-        expect(Dir.exists? patient.visits_dir_path).to be true
-      end
-
-      it "creates a labs directory" do
-        expect(Dir.exists? patient.labs_dir_path).to be true
-      end
-
-      context "after .save_patient_problems_medications(dir)" do
-        before(:each) do
-          patient.save_patient_problems_medications(dir)
-        end
-        let(:dir){ patient.dir_path + "/backup"}
-        it "saves a patient file to the directory" do
-          expect(File.exists? dir + "/patient.yml").to be true
-        end
-      end
-
-      context "with extra files in the patient, visits, and labs directories" do
-        let(:paths) do
-          ["dir","visits_dir","labs_dir"].map do |s|
-            patient.send(s+"_path") + "/foo.txt"
-          end
-        end
-        before(:each) do
-          paths.each do |path|
-            File.open(path,"w")
-          end
-        end
-
-        context "after .save" do
-          before(:each){ patient.save }
-          it "does nothing to a file in the patient dir" do
-            expect(File.exists?(paths[0])).to be true
-          end
-
-          it "does nothing to a file in the visits dir" do
-            expect(File.exists?(paths[1])).to be true
-          end
-
-          it "does nothing to a file in the visits dir" do
-            expect(File.exists?(paths[2])).to be true
-          end
-
-        end
-
+      context "1999_10_5" do
+        let(:datestring){ "1999_10_5" }
+        it{ should eq 99}
       end
 
     end
