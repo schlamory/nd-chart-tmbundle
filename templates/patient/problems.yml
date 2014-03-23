@@ -1,18 +1,2 @@
 # <%= last_name %>, <%= first_name %>
 # problems.yml
-<% if problems.empty? %>
-#
-# Add new problems like this:
-#
-# -
-#   diagnosis:
-#   icd9:
-#   note:
-<% end %>
-
-<% problems.each do |p| %>
--
-  diagnosis: <%= p.diagnosis %>
-  icd9: <%= p.icd9 %>
-  note: <%= p.note %>
-<% end %>

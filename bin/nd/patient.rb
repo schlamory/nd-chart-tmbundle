@@ -1,4 +1,6 @@
 require 'yaml'
+require 'erb'
+require 'fileutils'
 require 'nd/util'
 require 'nd/serializable'
 require 'nd/allergy'
@@ -20,9 +22,9 @@ module Nd
 
   class Patient < Nd::Serializable
 
-    ND_PATIENTS_DIR = ENV["ND_PATIENTS_DIR"] || File.expand_path("~/projects/laura/patients")
+    ND_PATIENTS_DIR = ENV["ND_PATIENTS_DIR"]
 
-    attr_accessor :first_name, :last_name, :date_of_birth
+    attr_accessor :first_name, :last_name, :date_of_birth, :dir_path
     attr_reader :problems, :medications, :allergies
 
     def allergies=(values)
@@ -32,6 +34,13 @@ module Nd
 
     def name
       "#{last_name}, #{first_name}"
+    end
+
+    def name=(value)
+      if value =~ /(.*)\, (.*)/
+        self.last_name = $1.strip
+        self.first_name = $2.strip
+      end
     end
 
     def age
@@ -51,7 +60,53 @@ module Nd
       date.year - date_of_birth.year - (bd_on_date_year > date ? 1 : 0)
     end
 
+    def patient_file_exists?
+      File.exist? patient_yml_path
+    end
+
+    def initialize_files_if_absent
+      initialize_file_with_template_if_absent patient_yml_path, "patient.yml"
+      initialize_file_with_template_if_absent medications_yml_path, "medications.yml"
+      initialize_file_with_template_if_absent problems_yml_path, "problems.yml"
+    end
+
+    def dir_path
+      @dir_path ||= File.expand_path(name,ND_PATIENTS_DIR)
+    end
+
+    def visits_dir_path
+      File.expand_path("visits",dir_path)
+    end
+
+    def create_dir_if_absent
+      FileUtils.mkdir_p dir_path unless Dir.exists? dir_path
+      FileUtils.mkdir_p visits_dir_path unless Dir.exists? visits_dir_path
+    end
+
+    def patient_yml_path
+      File.expand_path("patient.yml",dir_path)
+    end
+
+    def medications_yml_path
+      File.expand_path("medications.yml",dir_path)
+    end
+
+    def problems_yml_path
+      File.expand_path("problems.yml",dir_path)
+    end
+
     private
+
+    def render_file(path)
+      ERB.new(File.open(path,'r').read,nil,'<>').result binding
+    end
+
+    def initialize_file_with_template_if_absent(file_path,template_name)
+      text = render_file File.expand_path("templates/patient/"+template_name,BUNDLE_PATH)
+      unless File.exists? file_path
+        File.open(file_path,'w').write text
+      end
+    end
 
     def values_with_type(values,klass)
       values.map do |v|

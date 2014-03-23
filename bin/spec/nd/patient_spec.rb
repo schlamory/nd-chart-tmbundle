@@ -12,6 +12,31 @@ describe Nd::Patient do
   its(:name){ should eq 'Alger, Horatio'}
   its(:dob){ should be_nil}
   its(:age){ should be_nil}
+  its(:dir_path){ should eq ENV["ND_PATIENTS_DIR"] + "/Alger, Horatio"}
+
+  context "after .create_dir_if_absent" do
+    before(:each){ patient.create_dir_if_absent }
+    it ".dir_path exists" do
+      expect(File.exists? patient.dir_path).to be_true
+      expect(File.exists? patient.visits_dir_path).to be_true
+    end
+
+    context "after .initialize_files_if_absent" do
+      before(:each){ patient.initialize_files_if_absent }
+      it "creates the files" do
+        expect(File.exists? patient.patient_yml_path).to be_true
+        expect(File.exists? patient.medications_yml_path).to be_true
+        expect(File.exists? patient.problems_yml_path).to be_true
+      end
+    end
+
+  end
+
+  context "after .name = Billy, Hill" do
+    before(:each){ patient.name = " Billy , Hill "}
+    its(:first_name){ should eq 'Hill'}
+    its(:last_name){ should eq 'Billy'}
+  end
 
   context "after patient.dob = '1899_10_12'" do
     before(:each){ patient.dob = '1899_10_12' }

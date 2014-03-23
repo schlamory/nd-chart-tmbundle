@@ -2,13 +2,43 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
 	<key>command</key>
-	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
-puts "Hello world"
+	<string>#!/usr/bin/env ruby
+require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+name = gets
+
+patient = Nd::Patient.new
+patient.name = name
+
+puts patient.name
+
+unless patient.patient_file_exists?
+  patient.create_dir_if_absent
+  patient.initialize_files_if_absent
+end
+
+`mate #{patient.dir_path.gsub ' ', '\ '}`
+
 </string>
+	<key>input</key>
+	<string>line</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@P</string>
 	<key>name</key>
 	<string>New Patient</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>uuid</key>
 	<string>F232171E-19ED-4058-9200-CBD0DF9B11F8</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

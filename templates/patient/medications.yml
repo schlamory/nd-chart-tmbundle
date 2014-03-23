@@ -1,20 +1,2 @@
 # <%= last_name %>, <%= first_name %>
 # medications.yml
-<% if medications.empty? %>
-#
-# Add new medications like:
-#
-# -
-#   name:
-#   dose:
-#   directions:
-#   note:
-<% end %>
-
-<% medications.each do |m| %>
--
-  name: <%= m.name %>
-  dose: <%= m.dose %>
-  directions: <%= m.directions %>
-  note: <%= m.directions %>
-<% end %>
