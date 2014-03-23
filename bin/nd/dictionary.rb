@@ -3,7 +3,7 @@ require 'fuzzystringmatch'
 
 module Nd
   class Dictionary
-    DICTIONARY_DIR = File.expand_path "Dictionaries", Nd::BUNDLE_PATH
+    DICTIONARY_DIR = File.expand_path "dictionaries", Nd::BUNDLE_PATH
     attr_accessor :table_name, :table_path, :min_match_score, :table
 
     def min_match_score
