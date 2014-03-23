@@ -42,11 +42,15 @@ describe Nd::Patient do
         first_name: Marge
         last_name: Simpson
         dob: 1962/6/12
+
+        allergies:
       YAML
       }
 
       its(:name){ should eq "Simpson, Marge"}
       its(:dob){ should eq "1962_06_12"}
+
+      its(:allergies){ should eq []}
 
     end
 

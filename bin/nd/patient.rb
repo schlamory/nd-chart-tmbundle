@@ -5,6 +5,17 @@ require 'nd/allergy'
 require 'nd/medication'
 require 'nd/problem'
 
+# tab-completions
+#   patient=>
+#
+# first_name:
+# last_name:
+# dob:
+#
+# allergies:
+#
+# caregivers:
+
 module Nd
 
   class Patient < Nd::Serializable
@@ -15,11 +26,8 @@ module Nd
     attr_reader :problems, :medications, :allergies
 
     def allergies=(values)
-      if values.first.kind_of? Hash
-        @allergies = values.map {|v| Nd::Allergy.from_hash v}
-      else
-        @allergies = values
-      end
+      values = [] if values.nil?
+      @allergies = values_with_type(values,Nd::Allergy)
     end
 
     def name
@@ -41,6 +49,18 @@ module Nd
     def age_on_date(date)
       bd_on_date_year = Date.strptime("#{date.year}_#{date_of_birth.strftime '%m_%d'}", "%Y_%m_%d")
       date.year - date_of_birth.year - (bd_on_date_year > date ? 1 : 0)
+    end
+
+    private
+
+    def values_with_type(values,klass)
+      values.map do |v|
+        if v.kind_of? klass
+          v
+        elsif v.kind_of? Hash
+          klass.from_hash v
+        end
+      end
     end
 
   end
