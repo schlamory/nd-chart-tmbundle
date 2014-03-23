@@ -18,6 +18,7 @@ module Nd
       rescue
       end
     end
+
     nil
   end
 end

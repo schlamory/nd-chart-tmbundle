@@ -42,6 +42,14 @@ describe ".date_parser" do
        expect(Nd.parse_date "2001_06_20").to eq date
     end
 
+    it "2001_6_20" do
+       expect(Nd.parse_date "2001_6_20").to eq date
+    end
+
+    it "20010620" do
+       expect(Nd.parse_date "20010620").to eq date
+    end
+
   end
 
   context "long format with month, day, year" do
