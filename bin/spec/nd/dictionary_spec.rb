@@ -1,49 +1,60 @@
 require_relative "../spec_helper.rb"
 require "ostruct"
 
-describe Nd::Dictionary do
 
-  it "DICTIONARY_DIR is correct" do
-    expect(Nd::Dictionary::DICTIONARY_DIR).to eq Nd::BUNDLE_PATH + "/Dictionaries"
-  end
+describe Nd do
 
-  describe "best_match" do
-    subject(:row){ Nd::Dictionary.best_match(string,rows,min_closeness)}
-    let(:min_closeness){ 0 }
-    let(:rows) do
-      ["foo","bar","baz","foo bar baz"].map {|s| [s]}
-    end
-
-    context "when a row matches exactly" do
-      let(:string){ "foo" }
-      it{ should include string}
-    end
-
-    context "when a row matches exactly" do
-      let(:string){ "fo" }
-      it{ should include "foo"}
-    end
-
-    context "with an exact match, except for its case" do
-      let(:string){ "FoO" }
-      it{ should include "foo"}
-    end
-
-    context "when there is a partial match" do
-      let(:string){ "foobar" }
-      it{ should include "foo bar baz"}
-      context "when the matching threshold is very high" do
-        let(:min_closeness){ 0.97 }
-        it{ should be_nil }
+  describe "Dictionary" do
+    subject(:dict) do
+      Nd::Dictionary.new.tap do |d|
+        d.table_path = File.expand_path("../../tmp/foo.csv",__FILE__)
+        File.open(d.table_path,'w') {|f| f.write "key,value\rfooKey,fooValue\rbarKey,barValue"}
       end
     end
 
+    it{ should be_kind_of Nd::Dictionary }
+
+    it "has the right number of rows" do
+      expect(dict.table.length).to be 2
+    end
+
+    it ".expand_key 'foo' is correct" do
+      expect(dict.expand_key 'fooKey').to eq 'fooKey (fooValue)'
+    end
+
+    context "after .add_key_value 'bazKey', 'bazValue' " do
+      before(:each) do
+        dict.add_key_value 'bazKey', 'bazValue'
+      end
+
+      it "has the right number of rows" do
+        expect(dict.table.length).to be 3
+      end
+
+    end
+
   end
 
-end
+  describe ".Icd9Dictionary" do
+    subject(:dict) { Nd.Icd9Dictionary }
+    its(:table_name){ should eq 'icd9_dictionary'}
 
-describe Nd::Dictionary::Icd9 do
+    it ".expand_key 'stress' is correct" do
+      expect(dict.expand_key 'stress').to eq 'stress (308.9)'
+    end
 
-  it{ should respond_to :search }
+    it ".expand_key 'StrEss' is correct" do
+      expect(dict.expand_key 'stress').to eq 'stress (308.9)'
+    end
+
+    it ".expand_key 'foobar' is correct" do
+      expect(dict.expand_key 'foobar').to eq 'foobar (no match found)'
+    end
+
+    it ".best_row_for_key 'depression' is correct" do
+      expect(dict.best_row_for_key('depression')[0]).to eq "depression"
+    end
+
+  end
 
 end

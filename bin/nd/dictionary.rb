@@ -1,46 +1,66 @@
 require 'csv'
 require 'fuzzystringmatch'
 
-module Nd::Dictionary
-  DICTIONARY_DIR = File.expand_path "Dictionaries", Nd::BUNDLE_PATH
+module Nd
+  class Dictionary
+    DICTIONARY_DIR = File.expand_path "Dictionaries", Nd::BUNDLE_PATH
+    attr_accessor :table_name, :table_path, :min_match_score, :table
 
-  def self.string_matcher
-    @@matcher ||= FuzzyStringMatch::JaroWinkler.create( :pure )
-  end
+    def min_match_score
+      @min_match_score ||= 0.8
+    end
 
-  def self.load_table(path)
-    CSV.parse(File.read(path))
-  end
+    def table_path
+      @table_path ||= DICTIONARY_DIR + "/#{table_name}.csv"
+    end
 
-  def self.best_match(string,rows,min_score=0)
-    row,score = rows.reduce([nil,0]) do |(best_row,best_score),row|
-      score = string_matcher.getDistance(string,row[0])
-      if score > best_score
-        [row,score]
-      else
-        [best_row,best_score]
+    def self.string_matcher
+      @@matcher ||= FuzzyStringMatch::JaroWinkler.create( :pure )
+    end
+
+    def table
+      @table ||= CSV.parse(File.read(table_path), :headers => true)
+    end
+
+    def key_row_match_score(key,row)
+      self.class.string_matcher.getDistance(key.downcase,row[0].downcase)
+    end
+
+    def best_row_for_key(key)
+      table.max_by do |row|
+        key_row_match_score(key,row)
       end
     end
-    if score > min_score
-      row
+
+    def row_to_string(row)
+      "#{row[0]} (#{row[1]})"
     end
+
+    def expand_key(key)
+      row = best_row_for_key(key)
+      if key_row_match_score(key,row) >= min_match_score
+        row_to_string(row)
+      else
+        "#{key} (no match found)"
+      end
+    end
+
+    def add_key_value(key,value)
+      row = CSV::Row.new table.headers, [key] + value_to_fields(value)
+      table << row
+      File.open(table_path, 'a') {|f| f.write("\r#{row.fields.join ','}")}
+    end
+
+    def value_to_fields(value)
+      [value]
+    end
+
   end
 
-  module Icd9
-    PATH = File.expand_path "icd9_dictionary.csv", DICTIONARY_DIR
-
-    def self.table
-      @@table ||= Nd::Dictionary.load_table(PATH)
+  def self.Icd9Dictionary
+    @@icd9 ||= Dictionary.new.tap do |d|
+      d.table_name = "icd9_dictionary"
     end
-
-    def self.search(string)
-
-    end
-
-    def self.append(key,value)
-
-    end
-
   end
 
 end
