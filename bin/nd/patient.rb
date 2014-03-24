@@ -48,8 +48,8 @@ module Nd
 
     def name=(value)
       if value =~ /(.*)\, (.*)/
-        self.last_name = $1.strip
-        self.first_name = $2.strip
+        self.last_name = $1.strip.capitalize
+        self.first_name = $2.strip.capitalize
       end
     end
 

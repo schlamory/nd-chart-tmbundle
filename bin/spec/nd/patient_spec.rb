@@ -38,7 +38,7 @@ describe Nd::Patient do
   end
 
   context "after .name = Billy, Hill" do
-    before(:each){ patient.name = " Billy , Hill "}
+    before(:each){ patient.name = " billy , hill "}
     its(:first_name){ should eq 'Hill'}
     its(:last_name){ should eq 'Billy'}
   end

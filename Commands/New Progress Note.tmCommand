@@ -23,10 +23,6 @@ if File.exists? visit.progress_note_md_path
 else
   visit.initialize_files_if_absent
 end
-
-sleep 3
-
-`mate #{visit.progress_note_md_path.gsub ' ', '\ '}`
 </string>
 	<key>input</key>
 	<string>line</string>

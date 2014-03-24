@@ -1,5 +1,6 @@
 module Nd
-  def self.parse_date(d)
+  def self.parse_date(d,relative_date=nil)
+    relative_date ||= Date.today
     #Accept dates
 
     formats = ["%Y_%m_%d","%Y/%m/%d","%Y-%m-%d","%Y%m%d","%m/%d/%Y","%m-%d-%Y"]
@@ -14,7 +15,13 @@ module Nd
     formats.each do |f|
       begin
         mday = Date.strptime(d.to_s,f)
-        return Date.new(Date.today.year,mday.month,mday.day)
+        date = Date.new(relative_date.year,mday.month,mday.day)
+        if date - relative_date > 180
+          date = Date.new(relative_date.year-1,mday.month,mday.day)
+        elsif relative_date - date > 180
+          date = Date.new(relative_date.year+1,mday.month,mday.day)
+        end
+        return date
       rescue
       end
     end
