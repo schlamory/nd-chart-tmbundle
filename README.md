@@ -16,3 +16,6 @@ Requirements:
     gem install 'kramdown'
     gem install 'pdfkit'
     gem install 'rspec' #If you wanna run the test suite
+
+To make pdfkit work, you'll also need wkhtmltopdf. See
+http://superuser.com/questions/517953/how-do-i-download-wkhtmltopdf-on-a-mac-os-x for one fellow's installation procedure.
