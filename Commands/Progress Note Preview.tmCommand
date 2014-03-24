@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+
+wd = ENV["TM_DIRECTORY"]
+
+visit = Nd::Visit.initialize_from_dir wd
+
+html = visit.progress_note_html
+
+File.open(visit.progress_note_html_path,'w').write html</string>
+	<key>input</key>
+	<string>line</string>
+	<key>keyEquivalent</key>
+	<string>@L</string>
+	<key>name</key>
+	<string>Progress Note Preview</string>
+	<key>uuid</key>
+	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+</dict>
+</plist>

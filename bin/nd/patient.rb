@@ -32,7 +32,7 @@ module Nd
       @allergies = values_with_type(values,Nd::Allergy)
     end
 
-    def probems=(values)
+    def problems=(values)
       values = [] if values.nil?
       @problems = values_with_type(values,Nd::Problem)
     end
@@ -124,7 +124,7 @@ module Nd
       patient.medications = medications if medications.kind_of? Array
 
       problems = YAML.load(File.open(patient.problems_yml_path,'r').read)
-      patient.problems = medications if medications.kind_of? Array
+      patient.problems = problems if problems.kind_of? Array
 
       patient
     end
