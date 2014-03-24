@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
@@ -14,12 +16,22 @@ html = visit.progress_note_html
 
 File.open(visit.progress_note_html_path,'w').write html</string>
 	<key>input</key>
-	<string>line</string>
+	<string>none</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>keyEquivalent</key>
 	<string>@L</string>
 	<key>name</key>
 	<string>Progress Note Preview</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>uuid</key>
 	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

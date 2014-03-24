@@ -80,6 +80,11 @@ dd {
 
 <div class="body-container">
 
+    <dl>
+      <dt>Date</dt>
+        <dd><%= date %></dd>
+    </dl>
+
   <div class="patient-info">
     <dl>
       <dt>Name</dt>
@@ -99,26 +104,26 @@ dd {
 
   <div class="sidebox">
 
-    <% if patient.medications %>
-    <div class="medications">
-      <h3> Medications </h3>
+    <% if patient.problems %>
+    <div class="problems">
+      <h3> Problem List </h3>
       <ul>
-        <% patient.medications.each do |m| %>
+        <% patient.problems.each do |p| %>
         <li>
-          <%= "#{m.name} (#{m.dose})" %>
+          <%= "#{p.diagnosis} (#{p.icd9})" %>
         </li>
         <% end %>
       </ul>
     </div>
     <% end %>
-
-    <% if patient.problems %>
-    <div class="problems">
-      <h3> Problems </h3>
+    
+    <% if patient.medications %>
+    <div class="medications">
+      <h3> Currently Taking </h3>
       <ul>
-        <% patient.problems.each do |p| %>
+        <% patient.medications.each do |m| %>
         <li>
-          <%= "#{p.diagnosis} (#{p.icd9})" %>
+          <%= "#{m.name} (#{m.dose}) #{'[' + m.note + ']' unless m.note.nil?}" %>
         </li>
         <% end %>
       </ul>

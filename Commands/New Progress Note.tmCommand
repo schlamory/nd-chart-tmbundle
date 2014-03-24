@@ -18,7 +18,7 @@ visit = Nd::Visit.new
 visit.date = date
 visit.patient = patient
 
-if File.exists? visit.progress_note_md_path
+if File.exists? visit.progress_note_body_path
     raise "There is already a progress note for #{patient.name} on #{visit.date}."
 else
   visit.initialize_files_if_absent
