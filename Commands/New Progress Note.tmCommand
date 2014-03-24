@@ -2,13 +2,49 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
 	<key>command</key>
-	<string>#!/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby -wKU
-puts "Hello world"
+	<string>#!/usr/bin/env ruby
+require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+
+date = Nd.parse_date(gets) || Date.today
+
+wd = ENV["TM_DIRECTORY"]
+patient_dir = Nd::Patient.patient_dir_containing_dir wd
+patient = Nd::Patient.initialize_from_dir patient_dir
+
+visit = Nd::Visit.new
+visit.date = date
+visit.patient = patient
+
+if File.exists? visit.progress_note_md_path
+    raise "There is already a progress note for #{patient.name} on #{visit.date}."
+else
+  visit.initialize_files_if_absent
+end
+
+sleep 3
+
+`mate #{visit.progress_note_md_path.gsub ' ', '\ '}`
 </string>
+	<key>input</key>
+	<string>line</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>keyEquivalent</key>
+	<string>@U</string>
 	<key>name</key>
 	<string>New Progress Note</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>uuid</key>
 	<string>3AE52612-1C16-44A3-8116-4E4DD9961DB5</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>

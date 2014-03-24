@@ -32,6 +32,16 @@ module Nd
       @allergies = values_with_type(values,Nd::Allergy)
     end
 
+    def probems=(values)
+      values = [] if values.nil?
+      @problems = values_with_type(values,Nd::Problem)
+    end
+
+    def medications=(values)
+      values = [] if values.nil?
+      @medications = values_with_type(values,Nd::Medication)
+    end
+
     def name
       "#{last_name}, #{first_name}"
     end
@@ -65,6 +75,7 @@ module Nd
     end
 
     def initialize_files_if_absent
+      create_dir_if_absent
       initialize_file_with_template_if_absent patient_yml_path, "patient.yml"
       initialize_file_with_template_if_absent medications_yml_path, "medications.yml"
       initialize_file_with_template_if_absent problems_yml_path, "problems.yml"
@@ -95,14 +106,41 @@ module Nd
       File.expand_path("problems.yml",dir_path)
     end
 
+    def self.patient_dir_containing_dir(dir)
+      while dir != "/"
+        if File.exists? File.expand_path("patient.yml", dir)
+          return dir
+        end
+        dir = File.expand_path "..", dir
+      end
+    end
+
+    def self.initialize_from_dir(dir_path)
+      patient_hash = YAML.load(File.open(File.expand_path("patient.yml",dir_path),'r').read)
+      patient = self.from_hash patient_hash
+      patient.dir_path = dir_path
+
+      medications = YAML.load(File.open(patient.medications_yml_path,'r').read)
+      patient.medications = medications if medications.kind_of? Array
+
+      problems = YAML.load(File.open(patient.problems_yml_path,'r').read)
+      patient.problems = medications if medications.kind_of? Array
+
+      patient
+    end
+
     private
+
+    def template_path(filename)
+      File.expand_path("templates/patient/"+filename,BUNDLE_PATH)
+    end
 
     def render_file(path)
       ERB.new(File.open(path,'r').read,nil,'<>').result binding
     end
 
     def initialize_file_with_template_if_absent(file_path,template_name)
-      text = render_file File.expand_path("templates/patient/"+template_name,BUNDLE_PATH)
+      text = render_file template_path template_name
       unless File.exists? file_path
         File.open(file_path,'w').write text
       end

@@ -12,14 +12,18 @@ name = gets
 patient = Nd::Patient.new
 patient.name = name
 
-puts patient.name
-
-unless patient.patient_file_exists?
-  patient.create_dir_if_absent
-  patient.initialize_files_if_absent
+if patient.first_name.nil? or patient.last_name.nil?
+  raise "To call 'New Patient', the cursor must be on a line with a patient name (e.g., 'Last, First')."
 end
 
-`mate #{patient.dir_path.gsub ' ', '\ '}`
+unless patient.patient_file_exists?
+  patient.initialize_files_if_absent
+  `mate #{patient.dir_path.gsub ' ', '\ '}`
+else
+  `mate #{patient.dir_path.gsub ' ', '\ '}`  
+  raise "Patient '#{patient.name}' already exists! No files have been altered."
+end
+
 
 </string>
 	<key>input</key>
