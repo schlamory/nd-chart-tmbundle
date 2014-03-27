@@ -27,13 +27,24 @@ module Nd
       File.expand_path("progress_note.html",dir_path)
     end
 
+    def progress_note_tex_path
+      File.expand_path("progress_note.tex",dir_path)
+    end
 
     def progress_note_body_html
       Kramdown::Document.new(File.read(progress_note_body_path)).to_html
     end
 
+    def progress_note_body_tex
+      Kramdown::Document.new(File.read(progress_note_body_path)).to_latex
+    end
+
     def progress_note_html
       render_file(template_path "progress_note.html")
+    end
+
+    def progress_note_tex
+      render_file(template_path "progress_note.tex")
     end
 
     def initialize_files_if_absent
@@ -42,7 +53,9 @@ module Nd
     end
 
     def create_dir_if_absent
-      FileUtils.mkdir_p dir_path unless Dir.exists? dir_path
+      [dir_path,snapshot_dir_path,preview_dir_path,final_dir_path].each do |path|
+        FileUtils.mkdir_p path unless Dir.exists? path
+      end
     end
 
     def self.initialize_from_dir(dir_path)
@@ -51,6 +64,18 @@ module Nd
         patient_dir = Nd::Patient.patient_dir_containing_dir dir_path
         v.patient = Nd::Patient.initialize_from_dir patient_dir
       end
+    end
+
+    def snapshot_dir_path
+      File.expand_path(".snapshot",dir_path)
+    end
+
+    def preview_dir_path
+      File.expand_path(".preview",dir_path)
+    end
+
+    def final_dir_path
+      File.expand_path(".final",dir_path)
     end
 
     private

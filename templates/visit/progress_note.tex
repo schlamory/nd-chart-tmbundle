@@ -1,0 +1,111 @@
+\documentclass[11pt]{letter}
+\usepackage[
+  letterpaper,
+  margin=0.85in,
+  top=1.5in,
+  headheight=55pt,
+  headsep=0.1in
+]{geometry}
+
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{wrapfig}
+\pagestyle{fancy}
+
+\usepackage{tikz}
+\usepackage{mdframed}
+
+
+% For debugging
+\usepackage{lipsum}
+%\usepackage{showframe}
+
+%For stylable itemize environments
+\usepackage{enumitem}
+\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
+\setlist{itemsep=.2em,leftmargin=0.15in,label=\sbt}
+
+\fancyhf{}  %this removes page numbering at the bottom of the page
+
+\newmdenv[
+frametitle=!!!ALERT,
+linewidth = 1.5pt
+]{alertbox}
+
+\newmdenv[
+linewidth = 1.5pt ,
+leftmargin= 0.2in,
+skipabove=0in
+]{sidebox}
+
+\newenvironment{alert}
+{ \begin{wrapfigure}{c}{\linewidth} \vspace{-5pt} \begin{alertbox}}
+{ \end{alertbox} \end{wrapfigure} }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+
+\newcommand{\contact}{Dr. Laura Figoski, ND $|$ (415) 617-9252 $|$ doctor@lauranaturopath.com}
+\newcommand{\vdate}{ Date of service: \today }
+\newcommand{\patient}{ Name: Laura Schlender  \hfill Age: 30 \hfill DOB: 1983/10/25 }
+\newcommand{\pagenumber}{ \thepage\ of\ \pageref{LastPage}}
+
+\lhead{\contact \hfill \pagenumber \\ \vspace{11pt} \vdate \\ \patient}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+%
+% \begin{alert}
+%   The patient has two eyes, but only one tongue!\\
+%   Hornswoggled
+% \end{alert}
+
+\begin{wrapfigure}{r}{2.5in}
+
+  % \vspace*{-11pt}
+
+  \begin{sidebox}[frametitle={Problem List}]
+    \begin{itemize}
+      \item Psoraisis (444)
+      \item Fuzzy ears (312)
+    \end{itemize}
+  \end{sidebox}
+
+  \vspace*{11pt}
+
+  \begin{sidebox}[frametitle={Currently Taking}]
+    \begin{itemize}
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+      \item Fish oil (2 caps daily)
+      \item Magnesium (200mg)
+    \end{itemize}
+  \end{sidebox}
+
+\end{wrapfigure}
+
+
+\lipsum[1-2]
+
+\hrulefill
+
+\lipsum[2-3]
+
+
+
+\end{document}

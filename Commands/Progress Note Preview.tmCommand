@@ -12,9 +12,9 @@ wd = ENV["TM_DIRECTORY"]
 
 visit = Nd::Visit.initialize_from_dir wd
 
-html = visit.progress_note_html
+tex = visit.progress_note_body_tex
 
-File.open(visit.progress_note_html_path,'w').write html</string>
+File.open(visit.progress_note_tex_path,'w').write tex</string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>

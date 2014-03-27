@@ -1,9 +1,28 @@
 <!-- <%= patient.last_name %>  ::  <%= patient.first_name %> :: <%= date.strftime "%Y_%m_%d" %> -->
 <!-- Compiled on <%= Date.today.strftime "%Y_%m_%d" %> -->
 
-<style type="text/css" media="screen">
+<style type="text/css" media="all">
 
-.page-number {
+
+@page {
+  @top-center {
+    content: element(pageHeader);
+  }
+  @bottom-center {
+    content: element(pageHeader);
+  }
+}
+
+#pageHeader{
+  position: running(pageHeader);
+}
+
+#pageFooter{
+  position: running(pageHeader);
+}
+
+
+header .page-number {
   float:right;
 }
 
@@ -116,7 +135,7 @@ dd {
       </ul>
     </div>
     <% end %>
-    
+
     <% if patient.medications %>
     <div class="medications">
       <h3> Currently Taking </h3>
