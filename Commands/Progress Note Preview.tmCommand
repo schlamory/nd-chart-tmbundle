@@ -7,14 +7,18 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+require "shellwords"
 
 wd = ENV["TM_DIRECTORY"]
 
 visit = Nd::Visit.initialize_from_dir wd
+visit.create_dir_if_absent
 
-tex = visit.progress_note_body_tex
+tex = visit.progress_note_tex
 
-File.open(visit.progress_note_tex_path,'w').write tex</string>
+tex_path = File.expand_path("progress_note.tex",visit.dir_path)
+
+File.open(tex_path,'w').write tex</string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>
