@@ -82,7 +82,8 @@ module Nd
       File.expand_path("img",dir_path)
     end
 
-    def image_file_names(name)
+    def image_file_names
+      Dir[image_dir_path+"/*"].map {|s| s.gsub(/.*\//,"")}
     end
 
     private
