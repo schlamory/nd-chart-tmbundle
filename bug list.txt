@@ -14,3 +14,19 @@ I want
   abdominal pain icd
 to turn into 
   abdominal pain (777)
+
+
+In the problem list:
+When I enter a "note", it does not show up in the box.
+
+In the medications,
+if I do not enter a dose, I do not want () to show up.
+
+side box list environment stretches when it wraps, and looks bad, e.g.:
+| * Tobacco     use    (305.1)|
+|   [smokeless]               | 
+Should be:
+| * Tobacco use (305.1)       |
+|   [smokeless]               | 
+
+Horizontal rule (line) doesn't span the page. It should. 

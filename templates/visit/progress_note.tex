@@ -98,7 +98,10 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%m/%d" %>
     <% if patient.problems.count > 0 %>
     \begin{boxitemize}
       <% patient.problems.each do |p| %>
-        \item <%= "#{p.diagnosis} (#{p.icd9})" %>
+        \item <%= p.diagnosis %> 
+              <%= "(#{p.icd9})" unless p.icd9.nil? %>  
+              
+              <%= "[#{p.note}]" unless p.note.nil? %>  
       <% end %>
     \end{boxitemize}
     <% end %>
@@ -110,7 +113,8 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%m/%d" %>
     <% if patient.medications.count > 0 %>
     \begin{boxitemize}
       <% patient.medications.each do |m| %>
-        \item <%= "#{m.name} (#{m.dose}) #{'[' + m.note + ']' unless m.note.nil?}" %>
+        \item <%= m.name %> 
+              <%= "(#{m.dose})" unless m.dose.nil? %>  <%= "[#{m.note}]" unless m.note.nil? %>  
       <% end %>
     \end{boxitemize}
     <% end %>
