@@ -8,52 +8,103 @@ describe Nd do
     subject(:dict) do
       Nd::Dictionary.new.tap do |d|
         d.table_path = File.expand_path("../../tmp/foo.csv",__FILE__)
-        File.open(d.table_path,'w') {|f| f.write "key,value\rfooKey,fooValue\rbarKey,barValue"}
+        File.open(d.table_path,"w") do |f|
+          f.write "key,v1,v2\r"
+          f.write "fooKey,fooV1,fooV2\r"
+          f.write "barKey,barV1,barV2"
+        end
       end
     end
-
-    it{ should be_kind_of Nd::Dictionary }
 
     it "has the right number of rows" do
       expect(dict.table.length).to be 2
     end
 
-    it ".expand_key 'foo' is correct" do
-      expect(dict.expand_key 'fooKey').to eq 'fooKey (fooValue)'
+    it ".index_for_key returns the right index for an existing row" do
+      expect(dict.index_for_key 'fookey').to be 0
     end
 
-    context "after .add_key_value 'bazKey', 'bazValue' " do
+    it ".index_for_key returns nil if no matching row" do
+      expect(dict.index_for_key 'bazKey').to be_nil
+    end
+
+    context "after .insert a new row with values as an array" do
       before(:each) do
-        dict.add_key_value 'bazKey', 'bazValue'
+        dict.insert "bazKey", ["bazV1","bazV2"]
       end
 
-      it "has the right number of rows" do
+      it "the table has the right number of rows" do
         expect(dict.table.length).to be 3
       end
 
+      it "the last row of the table has the values array" do
+        expect(dict.table[2].fields).to eq ["bazKey", "bazV1", "bazV2"]
+      end
+
+      it "the last row of the table has the values hash" do
+        expect(dict.table[2].to_hash).to eq "key" => "bazKey", "v1" => "bazV1", "v2" => "bazV2"
+      end
+
+      context "after .reload" do
+        before(:each){ dict.reload }
+        it "the table has the right number of rows" do
+          expect(dict.table.length).to be 3
+        end
+      end
+
     end
 
-  end
+    context "after .insert a new row with values as a hash" do
+      before(:each) do
+        dict.insert "bazKey", { "v1" => "bazV1", "v2" => "bazV2" }
+      end
 
-  describe ".Icd9Dictionary" do
-    subject(:dict) { Nd.Icd9Dictionary }
-    its(:table_name){ should eq 'icd9_dictionary'}
+      it "the table has the right number of rows" do
+        expect(dict.table.length).to be 3
+      end
 
-    it ".expand_key 'stress' is correct" do
-      expect(dict.expand_key 'stress').to eq 'stress (308.9)'
+      it "the last row of the table has the values array" do
+        expect(dict.table[2].fields).to eq ["bazKey", "bazV1", "bazV2"]
+      end
+
+      it "the last row of the table has the values hash" do
+        expect(dict.table[2].to_hash).to eq "key" => "bazKey", "v1" => "bazV1", "v2" => "bazV2"
+      end
+
+      context "after .reload" do
+        before(:each){ dict.reload }
+        it "the table has the right number of rows" do
+          expect(dict.table.length).to be 3
+        end
+      end
+
     end
 
-    it ".expand_key 'StrEss' is correct" do
-      expect(dict.expand_key 'stress').to eq 'stress (308.9)'
+    context "after .insert a row whose key matches an existing key" do
+      before(:each) do
+        dict.insert "fookey", { "v1" => "FOOV1", "v2" => "FOOV2" }
+      end
+
+      it "the table has the right number of rows" do
+        expect(dict.table.length).to be 2
+      end
+
+      it "the last row of the table has the values array" do
+        expect(dict.table[0].fields).to eq ["fookey", "FOOV1", "FOOV2"]
+      end
+
+      context "after .reload" do
+        before(:each){ dict.reload }
+        it "the table has the right number of rows" do
+          expect(dict.table.length).to be 2
+        end
+        it "the last row of the table has the values array" do
+          expect(dict.table[0].fields).to eq ["fookey", "FOOV1", "FOOV2"]
+        end
+      end
+
     end
 
-    it ".expand_key 'foobar' is correct" do
-      expect(dict.expand_key 'foobar').to eq 'foobar (no match found)'
-    end
-
-    it ".best_row_for_key 'depression' is correct" do
-      expect(dict.best_row_for_key('depression')[0]).to eq "depression"
-    end
 
   end
 

@@ -22,6 +22,10 @@ module Nd
       @table ||= CSV.parse(File.read(table_path), :headers => true)
     end
 
+    def reload
+      @table = nil
+    end
+
     def key_row_match_score(key,row)
       self.class.string_matcher.getDistance(key.downcase,row[0].downcase)
     end
@@ -32,35 +36,42 @@ module Nd
       end
     end
 
-    def row_to_string(row)
-      "#{row[0]} (#{row[1]})"
+    def index_for_key(key)
+      table.find_index {|row| row[0].downcase == key.downcase}
     end
 
-    def expand_key(key)
-      row = best_row_for_key(key)
-      if key_row_match_score(key,row) >= min_match_score
-        row_to_string(row)
+    def insert(key,values)
+      if values.kind_of? Array
+        row = CSV::Row.new table.headers, [key] + values
+      elsif values.kind_of? Hash
+        return insert(key, table.headers.drop(1).map {|h| values[h]})
+      end
+
+      index = index_for_key(key)
+      if index.nil?
+        append(row)
       else
-        "#{key} (no match found)"
+        replace(index,row)
+      end
+
+    end
+
+    private
+    def replace(index,row)
+      table[index] = row
+      CSV.open(table_path,"w") do |csv|
+        csv << table.headers
+        table.each do |row|
+          csv << row
+        end
       end
     end
 
-    def add_key_value(key,value)
-      row = CSV::Row.new table.headers, [key] + value_to_fields(value)
+    def append(row)
       table << row
       File.open(table_path, 'a') {|f| f.write("\r#{row.fields.join ','}")}
     end
 
-    def value_to_fields(value)
-      [value]
-    end
-
-  end
-
-  def self.Icd9Dictionary
-    @@icd9 ||= Dictionary.new.tap do |d|
-      d.table_name = "icd9_dictionary"
-    end
   end
 
 end

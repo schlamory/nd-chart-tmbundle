@@ -59,10 +59,14 @@ module Nd
     end
 
     def self.initialize_from_dir(dir_path)
-      Visit.new.tap do |v|
-        v.date = Date.strptime(dir_path.gsub(/.*\//,''), "%Y_%m_%d")
-        patient_dir = Nd::Patient.patient_dir_containing_dir dir_path
-        v.patient = Nd::Patient.initialize_from_dir patient_dir
+      begin
+        Visit.new.tap do |v|
+          v.date = Date.strptime(dir_path.gsub(/.*\//,''), "%Y_%m_%d")
+          patient_dir = Nd::Patient.patient_dir_containing_dir dir_path
+          v.patient = Nd::Patient.initialize_from_dir patient_dir
+        end
+      rescue
+        raise "\n\nThe working directory (#{dir_path}) is not a patient visit directory. Please try again from a patient visit directory.\n\n"
       end
     end
 

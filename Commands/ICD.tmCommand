@@ -6,33 +6,30 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
+require ENV["ND_CHART_BUNDLE"] + "/bin/nd.rb"
 
-wd = ENV["TM_DIRECTORY"]
-visit = Nd::Visit.initialize_from_dir wd
-visit.create_dir_if_absent
+line = gets
 
-tex = visit.progress_note_tex
+problem_file = !(ENV["TM_FILEPATH"] =~ /problems\.yml/).nil?
 
-tex_path = File.expand_path("progress_note.tex",visit.dir_path)
-
-File.open(tex_path,'w').write tex</string>
+puts problem_file
+</string>
 	<key>input</key>
-	<string>none</string>
+	<string>line</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@L</string>
 	<key>name</key>
-	<string>Progress Note Preview</string>
+	<string>ICD</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
 	<string>text</string>
 	<key>outputLocation</key>
 	<string>replaceInput</string>
+	<key>tabTrigger</key>
+	<string>icd</string>
 	<key>uuid</key>
-	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+	<string>17F1D3C9-3F71-4D66-ADF4-C4E185709097</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

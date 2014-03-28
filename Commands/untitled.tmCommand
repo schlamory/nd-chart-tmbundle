@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
 line = gets
 yaml_prefix = "(\s*(\-|\w+\:)?\s*)"
@@ -31,8 +31,6 @@ end</string>
 	<string>line</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@d</string>
 	<key>name</key>
 	<string>Dictionary</string>
 	<key>outputCaret</key>
