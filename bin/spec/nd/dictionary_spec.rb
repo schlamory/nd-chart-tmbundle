@@ -9,9 +9,9 @@ describe Nd do
       Nd::Dictionary.new.tap do |d|
         d.table_path = File.expand_path("../../tmp/foo.csv",__FILE__)
         File.open(d.table_path,"w") do |f|
-          f.write "key,v1,v2\r"
-          f.write "fooKey,fooV1,fooV2\r"
-          f.write "barKey,barV1,barV2"
+          f.write "key,v1,v2\n"
+          f.write "fooKey,fooV1,fooV2\n"
+          f.write "barKey,barV1,barV2\n"
         end
       end
     end

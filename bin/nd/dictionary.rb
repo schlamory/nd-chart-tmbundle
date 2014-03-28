@@ -4,14 +4,10 @@ require 'fuzzystringmatch'
 module Nd
   class Dictionary
     DICTIONARY_DIR = File.expand_path "dictionaries", Nd::BUNDLE_PATH
-    attr_accessor :table_name, :table_path, :min_match_score, :table
-
-    def min_match_score
-      @min_match_score ||= 0.8
-    end
+    attr_accessor :name, :table_path, :table
 
     def table_path
-      @table_path ||= DICTIONARY_DIR + "/#{table_name}.csv"
+      @table_path ||= DICTIONARY_DIR + "/#{name}.csv"
     end
 
     def self.string_matcher
@@ -19,7 +15,7 @@ module Nd
     end
 
     def table
-      @table ||= CSV.parse(File.read(table_path), :headers => true)
+      @table ||= CSV.parse(File.read(table_path), :headers => true, :skip_blanks=>true)
     end
 
     def reload
@@ -69,7 +65,7 @@ module Nd
 
     def append(row)
       table << row
-      File.open(table_path, 'a') {|f| f.write("\r#{row.fields.join ','}")}
+      CSV.open(table_path,"a") {|csv| csv << row}
     end
 
   end

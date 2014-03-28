@@ -7,12 +7,52 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd.rb"
+dict = Nd::Dictionary.new.tap {|d| d.name = 'icd9_dictionary' }
 
 line = gets
 
-problem_file = !(ENV["TM_FILEPATH"] =~ /problems\.yml/).nil?
+class String
+  def is_code?
+    !(self =~ /^\d+\.?\d?$/).nil?
+  end
+end
 
-puts problem_file
+type = nil
+if !(ENV["TM_FILEPATH"] =~ /problems\.yml/ ).nil? and 
+    !(line =~ /(\s*)diagnosis\:\s*(.*)\s*$/ ).nil?
+  type = "diagnosis"
+  indent, words = $1, $2.split(/\s+/)
+else
+  words = line.scan(/[^\s]+/).to_a
+end
+
+if words.last.is_code?
+  code = words.pop
+  key = words.join(" ")
+  dict.insert key, [code]
+else 
+  key = words.join " "
+  code = "unk" 
+  keywords = words.clone
+  keywords.each do |w|
+    k = keywords.join " "
+    row = dict.best_row_for_key(k)
+    if dict.key_row_match_score(k,row) &gt; 0.95
+      key = row[0]
+      code = row[1]
+      words = keywords
+      break
+    end
+    keywords.shift
+  end
+end
+
+case type
+when "diagnosis"
+  print "#{indent}diagnosis: #{key}\n#{indent}icd9: #{code}"
+else  
+  print line.gsub(/#{words.join '\s+'}\s+/, key) + " (#{code})"
+end
 </string>
 	<key>input</key>
 	<string>line</string>
