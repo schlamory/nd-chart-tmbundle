@@ -78,6 +78,13 @@ module Nd
       File.expand_path(".final",dir_path)
     end
 
+    def image_dir_path
+      File.expand_path("img",dir_path)
+    end
+
+    def image_file_names(name)
+    end
+
     private
 
     def render_file(path)
