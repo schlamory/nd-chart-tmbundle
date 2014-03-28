@@ -4,7 +4,7 @@ I want:
 - abdominal pain icd 
 to turn into:
 - abdominal pain (666)
-Right now, it seems to choke on two-word diagnoses.
+Right now, it seems to choke on multi-word diagnoses.
 
 I want to override old definitions when I put in new ones, e.g. when I do
   abdominal pain icd 666
@@ -15,13 +15,6 @@ I want
 to turn into 
   abdominal pain (777)
 
-
-In the problem list:
-When I enter a "note", it does not show up in the box.
-
-In the medications,
-if I do not enter a dose, I do not want () to show up.
-
 side box list environment stretches when it wraps, and looks bad, e.g.:
 | * Tobacco     use    (305.1)|
 |   [smokeless]               | 
@@ -30,3 +23,47 @@ Should be:
 |   [smokeless]               | 
 
 Horizontal rule (line) doesn't span the page. It should. 
+
+Remove section numbers. Make section title smaller size, but still bold.
+
+In final pdf, make the lists in the side boxes single spaced, make all the lists in the body, single spaced.
+
+When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.  
+
+Images don't render.
+
+Fix indentation (\noindent?) of text and lists in body.  I want it to look like this:
+
+    Reason for visit: Fatigue
+
+    Stress: 
+      - lots of stress
+      - lots of worry
+      - anxious
+
+    Energy:
+      - low
+      - worst in first thing in morning
+      - best at 10am
+
+Not like this:
+
+
+    Reason for visit: Fatigue
+
+        Stress: 
+        - lots of stress
+        - lots of worry
+        - anxious
+
+        Energy:
+        - low
+        - worst in first thing in morning
+        - best at 10am
+
+
+Add footer.  Copy example style.
+
+Create a snippet that allows me to insert the problem list into assessment.
+
+
