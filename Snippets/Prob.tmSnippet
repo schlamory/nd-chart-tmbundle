@@ -5,8 +5,7 @@
 	<key>content</key>
 	<string>  - 
     diagnosis: ${1}
-    icd9: ${2}
-    note: ${3}
+    note: ${2}
 </string>
 	<key>name</key>
 	<string>Prob</string>

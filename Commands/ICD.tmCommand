@@ -13,7 +13,7 @@ line = gets
 
 class String
   def is_code?
-    !(self =~ /^\d+\.?\d?$/).nil?
+    !(self =~ /^[a-zA-Z]?\d+\.?\d?$/).nil?
   end
 end
 
