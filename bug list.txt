@@ -1,0 +1,16 @@
+ICD-9 dictionary
+
+I want:
+- abdominal pain icd 
+to turn into:
+- abdominal pain (666)
+Right now, it seems to choke on two-word diagnoses.
+
+I want to override old definitions when I put in new ones, e.g. when I do
+  abdominal pain icd 666
+and then
+  abdominal pain icd 777
+I want 
+  abdominal pain icd
+to turn into 
+  abdominal pain (777)

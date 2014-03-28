@@ -6,7 +6,8 @@
 	<string>  - 
     name: ${1}
     dose: ${2}
-    note: ${3}</string>
+    note: ${3}
+</string>
 	<key>name</key>
 	<string>Med</string>
 	<key>tabTrigger</key>

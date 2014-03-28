@@ -6,7 +6,8 @@
 	<string>  - 
     diagnosis: ${1}
     icd9: ${2}
-    note: ${3}</string>
+    note: ${3}
+</string>
 	<key>name</key>
 	<string>Prob</string>
 	<key>tabTrigger</key>
