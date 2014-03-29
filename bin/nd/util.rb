@@ -3,7 +3,7 @@ module Nd
     relative_date ||= Date.today
     #Accept dates
 
-    formats = ["%Y_%m_%d","%Y/%m/%d","%Y-%m-%d","%Y%m%d","%m/%d/%Y","%m-%d-%Y"]
+    formats = ['%Y_%m_%d','%Y/%m/%d','%Y-%m-%d','%Y%m%d','%m/%d/%Y','%m-%d-%Y']
     formats.each do |f|
       begin
         return Date.strptime(d.to_s,f)
@@ -11,7 +11,7 @@ module Nd
       end
     end
 
-    formats = ["%m_%d","%m/%d","%m-%d"]
+    formats = ['%m_%d','%m/%d','%m-%d']
     formats.each do |f|
       begin
         mday = Date.strptime(d.to_s,f)
