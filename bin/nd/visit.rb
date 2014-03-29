@@ -3,6 +3,15 @@ require 'nd/patient'
 require 'nd/serializable'
 require 'kramdown'
 
+class Kramdown::Converter::Latex
+
+  def convert_header(el, opts)
+    type = @options[:latex_headers][output_header_level(el.options[:level]) - 1]
+    "\\#{type}{#{inner(el, opts)}}\n"
+  end
+
+end
+
 module Nd
   class Visit
     attr_accessor :date, :patient

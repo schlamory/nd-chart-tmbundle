@@ -117,7 +117,14 @@
   \@afterindentfalse\@afterheading % No indent after headings
 }
 
+\renewcommand{\subsubsection}[1]{
+  \noindent {\textsf{\textbf{\normalsize #1}}}
+}
 
+\newcommand{\nullspace}{
+\
+\vspace{-1em}
+}
 
 % ---------------------------------------------------------------------
 
@@ -139,20 +146,16 @@
 %itemize outside boxes
 \setlist[itemize]{
   topsep=0.2em,
-  itemsep=.05em,
+  itemsep=-0.4em,
   leftmargin=0.25in,
   label=\sbt,
-  before=\csname par\endcsname\raggedright,
-  partopsep=0pt
 }
 
 %enumerate outside boxes
 \setlist[enumerate]{
   topsep=0.2em,
-  itemsep=.05em,
+  itemsep=0em,
   leftmargin=0.25in,
-  before=\csname par\endcsname\raggedright,
-  partopsep=0pt
 }
 
 \newcommand*\NoIndentAfterEnv[1]{%
@@ -169,14 +172,20 @@
 \NoIndentAfterEnv{wrapfig}
 
 
-\newmdenv[
-frametitle=!!!ALERT,
-linewidth = 1.5pt
-]{alertbox}
+\newcommand{\alertbox}[2]{
+\vspace{-0.85em}
+\begin{mdframed}[
+  skipabove=0in,
+  linewidth = 1.5pt
+  ]
+{\textsf{\textbf{!!Alerts:}} #1}
+\end{mdframed}
+\vspace{0.85em}
+}
 
 \newmdenv[
 linewidth = 1.5pt,
-leftmargin= 0.2in,
+leftmargin= 0.1in,
 skipabove=0in
 ]{sidebox}
 
@@ -185,4 +194,6 @@ skipabove=0in
 { \end{alertbox} \end{wrapfigure} }
 
 \NoIndentAfterEnv{wrapfigure}
+\NoIndentAfterEnv{mdframed}
+
 

@@ -20,15 +20,15 @@ doctor@lauranaturopath.com
 }
 
 \newcommand{\vdate}{
- Date of Service: 2014/3/4
+ Date of Service: <%= date.strftime "%Y/%-m/%-d" %>
 }
 
 \newcommand{\patient}{
-Name: Amory Schlender
+Name: <%= patient.name %>
 \hfill
-Age: 28
+Age: <%= patient.age %>
 \hfill
-DOB: 1985/6/20
+DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
 }
 
 \lhead{\contact \hfill \pagenumber \\ \vspace{11pt} \vdate \\ \patient}
@@ -74,9 +74,13 @@ DOB: 1985/6/20
     <% end %>
   \end{sidebox}
 
-  \vspace{-22pt}
-
 \end{wrapfigure}
+
+\nullspace
+
+<% if (patient.alerts rescue false) %>
+\alertbox{ patient.alerts }
+<% end %>
 
 <%= progress_note_body_tex %>
 
