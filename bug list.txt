@@ -64,15 +64,17 @@ DONE with these!
       Add footer.  Copy example style.
 
 
+      When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
+
+      Create a snippet that allows me to insert the problem list into assessment.
+
+
 NOT done with these:
 
-When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
 
-  Images don't render.
+Images don't render.
 
+Make md2pdf a one-step process
 
-  Make md2pdf a one-step process
-
-  Create a snippet that allows me to insert the problem list into assessment.
 
 

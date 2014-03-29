@@ -74,7 +74,7 @@ describe Nd::Visit do
           expect(new_visit.previous_visit).to_not be nil
         end
 
-        it "has the old visit's progress note" do
+        it "incldes the old visit's progress note" do
           expect(File.read(new_visit.progress_note_body_path) ).to include "Foo Bar"
         end
 

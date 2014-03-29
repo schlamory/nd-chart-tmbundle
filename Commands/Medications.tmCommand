@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
+
+visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
+
+print visit.render_template "progress_note_medications.md"
+</string>
+	<key>input</key>
+	<string>word</string>
+	<key>name</key>
+	<string>Medications</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>tabTrigger</key>
+	<string>medications</string>
+	<key>uuid</key>
+	<string>F5EECC83-5C9D-4AF9-B4ED-06249D37E976</string>
+</dict>
+</plist>

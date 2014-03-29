@@ -9,25 +9,25 @@
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
-visit.create_dir_if_absent
 
-File.open(visit.progress_note_tex_path,'w').write visit.progress_note_tex</string>
+print visit.render_template "progress_note_problems.md"
+</string>
 	<key>input</key>
-	<string>none</string>
+	<string>word</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@L</string>
 	<key>name</key>
-	<string>Progress Note Preview</string>
+	<string>Problems</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
 	<string>text</string>
 	<key>outputLocation</key>
 	<string>replaceInput</string>
+	<key>tabTrigger</key>
+	<string>problems</string>
 	<key>uuid</key>
-	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+	<string>36BF49C7-B6D0-49A4-BCDE-CBDAF33CA71E</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

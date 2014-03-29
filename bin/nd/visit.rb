@@ -96,6 +96,10 @@ module Nd
       Dir[image_dir_path+"/*"].map {|s| s.gsub(/.*\//,"")}
     end
 
+    def render_template(filename)
+      render_file template_path(filename)
+    end
+
     private
 
     def render_file(path)
