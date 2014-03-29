@@ -1,65 +1,15 @@
-\documentclass[11pt]{article}
-\usepackage[
-  letterpaper,
-  margin=0.85in,
-  top=1.5in,
-  headheight=55pt,
-  headsep=0.1in
-]{geometry}
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
 
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage{wrapfig}
-\pagestyle{fancy}
+\documentclass{NDChart}
 
-\usepackage{tikz}
-\usepackage{mdframed}
+%----------------------------------------------------------------------------------------
+%	HEADER
+%----------------------------------------------------------------------------------------
 
-
-%%%
-% Kramdown requires
-\usepackage{inputenc}
-\usepackage{fontenc}
-\usepackage{listings}
-\usepackage{ucs}
-\usepackage{hyperref}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amsthm}
-\usepackage{amsfonts}
-\usepackage{graphicx}
-
-%For stylable itemize environments
-\usepackage{enumitem}
-\newcommand{\sbt}{\,\begin{picture}(-1,1)(-1,-3)\circle*{3}\end{picture}\ }
-\newlist{boxitemize}{itemize}{1}
-\setlist[boxitemize]{itemsep=.1em,leftmargin=0.15in,label=\sbt}
-
-\setlist[itemize]{itemsep=.1em,label=\sbt,topsep=1pt,partopsep=1pt}
-\setlist[enumerate]{itemsep=.1em,topsep=1pt,partopsep=1pt}
-
-
-\fancyhf{}  %this removes page numbering at the bottom of the page
-
-\newmdenv[
-frametitle=!!!ALERT,
-linewidth = 1.5pt
-]{alertbox}
-
-\newmdenv[
-linewidth = 1.5pt,
-leftmargin= 0.2in,
-skipabove=0in
-]{sidebox}
-
-\newenvironment{alert}
-{ \begin{wrapfigure}{c}{\linewidth} \vspace{-5pt} \begin{alertbox}}
-{ \end{alertbox} \end{wrapfigure} }
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Header
 \newcommand{\pagenumber}{ \thepage\ of\ \pageref{LastPage}}
-
+\fancyhf{}  %this removes page numbering at the bottom of the page
 
 \newcommand{\contact}{
 Dr. Laura Figoski, ND
@@ -70,38 +20,41 @@ doctor@lauranaturopath.com
 }
 
 \newcommand{\vdate}{
- Date of Service: <%= date.strftime "%Y/%m/%d" %>
+ Date of Service: 2014/3/4
 }
 
 \newcommand{\patient}{
-Name: <%= patient.name %>
+Name: Amory Schlender
 \hfill
-Age: <%= patient.age %>
+Age: 28
 \hfill
-DOB: <%= patient.date_of_birth.strftime "%Y/%m/%d" %>
+DOB: 1985/6/20
 }
 
 \lhead{\contact \hfill \pagenumber \\ \vspace{11pt} \vdate \\ \patient}
 
+%----------------------------------------------------------------------------------------
+%	FOOTER
+%----------------------------------------------------------------------------------------
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lfoot{4255 18th St \\ San Francisco, CA 94117}
+\rfoot{Fax: (415) 921-1345 \\ www.lauranaturopath.com}
+
+%----------------------------------------------------------------------------------------
+%	FOOTER
+%----------------------------------------------------------------------------------------
+
 \begin{document}
-%
-% \begin{alert}
-% \end{alert}
 
 \begin{wrapfigure}{r}{2.5in}
-
-  \vspace*{-40pt}
 
   \begin{sidebox}[frametitle={Problem List}]
     <% if patient.problems.count > 0 %>
     \begin{boxitemize}
+      \raggedright
       <% patient.problems.each do |p| %>
-        \item <%= p.diagnosis %> 
-              <%= "(#{p.icd9})" unless p.icd9.nil? %>  
-              
-              <%= "[#{p.note}]" unless p.note.nil? %>  
+        \item <%= p.diagnosis %>
+              <%= "(#{p.icd9})" unless p.icd9.nil? %> <%= "[#{p.note}]" unless p.note.nil? %>
       <% end %>
     \end{boxitemize}
     <% end %>
@@ -112,16 +65,25 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%m/%d" %>
   \begin{sidebox}[frametitle={Currently Taking}]
     <% if patient.medications.count > 0 %>
     \begin{boxitemize}
+      \raggedright
       <% patient.medications.each do |m| %>
-        \item <%= m.name %> 
-              <%= "(#{m.dose})" unless m.dose.nil? %>  <%= "[#{m.note}]" unless m.note.nil? %>  
+        \item <%= m.name %>
+              <%= "(#{m.dose})" unless m.dose.nil? %>  <%= "[#{m.note}]" unless m.note.nil? %>
       <% end %>
     \end{boxitemize}
     <% end %>
   \end{sidebox}
 
+  \vspace{-22pt}
+
 \end{wrapfigure}
 
-  <%= progress_note_body_tex %>
+<%= progress_note_body_tex %>
+
+\vfill
+\begin{flushright}
+Signature: \underline{\hspace{2.5in}}\\
+Dr. Laura Figoski, ND
+\end{flushright}
 
 \end{document}

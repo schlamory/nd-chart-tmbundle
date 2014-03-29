@@ -1,34 +1,37 @@
-ICD-9 dictionary
+DONE with this!
+        ICD-9 dictionary
 
-I want:
-- abdominal pain icd 
-to turn into:
-- abdominal pain (666)
-Right now, it seems to choke on multi-word diagnoses.
+        I want:
+        - abdominal pain icd
+        to turn into:
+        - abdominal pain (666)
+        Right now, it seems to choke on multi-word diagnoses.
 
-I want to override old definitions when I put in new ones, e.g. when I do
-  abdominal pain icd 666
-and then
-  abdominal pain icd 777
-I want 
-  abdominal pain icd
-to turn into 
-  abdominal pain (777)
+        I want to override old definitions when I put in new ones, e.g. when I do
+          abdominal pain icd 666
+        and then
+          abdominal pain icd 777
+        I want
+          abdominal pain icd
+        to turn into
+          abdominal pain (777)
 
-side box list environment stretches when it wraps, and looks bad, e.g.:
-| * Tobacco     use    (305.1)|
-|   [smokeless]               | 
-Should be:
-| * Tobacco use (305.1)       |
-|   [smokeless]               | 
+DONE with this!
+        side box list environment stretches when it wraps, and looks bad, e.g.:
+        | * Tobacco     use    (305.1)|
+        |   [smokeless]               |
+        Should be:
+        | * Tobacco use (305.1)       |
+        |   [smokeless]               |
 
-Horizontal rule (line) doesn't span the page. It should. 
+      In final pdf, make the lists in the side boxes single spaced, make all the lists in the body, single spaced.
+
+
+Horizontal rule (line) doesn't span the page. It should.
 
 Remove section numbers. Make section title smaller size, but still bold.
 
-In final pdf, make the lists in the side boxes single spaced, make all the lists in the body, single spaced.
-
-When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.  
+When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
 
 Images don't render.
 
@@ -36,7 +39,7 @@ Fix indentation (\noindent?) of text and lists in body.  I want it to look like 
 
     Reason for visit: Fatigue
 
-    Stress: 
+    Stress:
       - lots of stress
       - lots of worry
       - anxious
@@ -51,7 +54,7 @@ Not like this:
 
     Reason for visit: Fatigue
 
-        Stress: 
+        Stress:
         - lots of stress
         - lots of worry
         - anxious
