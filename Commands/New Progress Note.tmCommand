@@ -8,18 +8,17 @@
 	<string>#!/usr/bin/env ruby
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
-date = Nd.parse_date(gets) || Date.today
-
-wd = ENV["TM_DIRECTORY"]
-patient_dir = Nd::Patient.patient_dir_containing_dir wd
-patient = Nd::Patient.initialize_from_dir patient_dir
-
-visit = Nd::Visit.new
-visit.date = date
-visit.patient = patient
+visit = Nd::Visit.new.tap do |v|
+  v.patient = Nd::Patient.patient_for_dir ENV["TM_DIRECTORY"]
+  if v.patient.nil?
+    raise "\n\nThe current directory (#{ENV["TM_DIRECTORY"]}) does not include a patient record. Try calling 'New Progress Note' from within the patient's patient.yml file.\n\n"
+  end
+  v.date = Nd.parse_date(gets) || Date.today
+  v
+end
 
 if File.exists? visit.progress_note_body_path
-    raise "There is already a progress note for #{patient.name} on #{visit.date}."
+  raise "\n\nThere is already a progress note for #{visit.patient.name} on #{visit.date}.\n\n"
 else
   visit.initialize_files_if_absent
 end

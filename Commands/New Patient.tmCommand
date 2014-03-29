@@ -13,7 +13,7 @@ patient = Nd::Patient.new
 patient.name = name
 
 if patient.first_name.nil? or patient.last_name.nil?
-  raise "To call 'New Patient', the cursor must be on a line with a patient name (e.g., 'Last, First')."
+  raise "\n\nTo call 'New Patient', the cursor must be on a line with a patient name (e.g., 'Last, First').\n\n"
 end
 
 unless patient.patient_file_exists?
@@ -21,7 +21,7 @@ unless patient.patient_file_exists?
   `mate #{patient.dir_path.gsub ' ', '\ '}`
 else
   `mate #{patient.dir_path.gsub ' ', '\ '}`  
-  raise "Patient '#{patient.name}' already exists! No files have been altered."
+  raise "\n\nPatient '#{patient.name}' already exists! No files have been altered.\n\n"
 end
 
 

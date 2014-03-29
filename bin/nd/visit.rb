@@ -13,7 +13,7 @@ class Kramdown::Converter::Latex
 end
 
 module Nd
-  class Visit
+  class Visit < Serializable
     attr_accessor :date, :patient
 
     def date
@@ -51,6 +51,10 @@ module Nd
 
     def progress_note_tex_path
       File.expand_path("progress_note.tex",tex_dir_path)
+    end
+
+    def progress_note_body_tex
+      Kramdown::Document.new(File.read(progress_note_body_path)).to_latex
     end
 
     def progress_note_tex
@@ -100,23 +104,11 @@ module Nd
       render_file template_path(filename)
     end
 
-    private
-
-    def render_file(path)
-      ERB.new(File.open(path,'r').read,nil,'<>').result binding
-    end
+    protected
 
     def template_path(filename)
       File.expand_path("templates/visit/"+filename,BUNDLE_PATH)
     end
-
-    def initialize_file_with_template_if_absent(file_path,template_name)
-      unless File.exists? file_path
-        text = render_file template_path template_name
-        File.write file_path, text
-      end
-    end
-
 
   end
 

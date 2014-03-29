@@ -91,7 +91,7 @@ module Nd
 
     def visit_dates
       Dir[visits_dir_path + "/*_*_*/"].map do |s|
-        Date.strptime Pathname.new(s).basename.to_s, "%Y_%m_%d"
+        Date.strptime s.gsub(/.*\/(.*)\//,'\1'), "%Y_%m_%d"
       end
     end
 
@@ -110,6 +110,13 @@ module Nd
 
     def problems_yml_path
       File.expand_path("problems.yml",dir_path)
+    end
+
+    def self.patient_for_dir(dir)
+      patient_dir = self.patient_dir_containing_dir(dir)
+      if patient_dir
+        self.initialize_from_dir(patient_dir)
+      end
     end
 
     def self.patient_dir_containing_dir(dir)
@@ -135,21 +142,10 @@ module Nd
       patient
     end
 
-    private
+    protected
 
     def template_path(filename)
       File.expand_path("templates/patient/"+filename,BUNDLE_PATH)
-    end
-
-    def render_file(path)
-      ERB.new(File.open(path,'r').read,nil,'<>').result binding
-    end
-
-    def initialize_file_with_template_if_absent(file_path,template_name)
-      unless File.exists? file_path
-        text = render_file template_path template_name
-        File.write(file_path, text)
-      end
     end
 
     def values_with_type(values,klass)
