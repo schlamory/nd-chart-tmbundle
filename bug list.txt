@@ -1,4 +1,4 @@
-DONE with this!
+DONE with these!
         ICD-9 dictionary
 
         I want:
@@ -16,7 +16,6 @@ DONE with this!
         to turn into
           abdominal pain (777)
 
-DONE with this!
         side box list environment stretches when it wraps, and looks bad, e.g.:
         | * Tobacco     use    (305.1)|
         |   [smokeless]               |
@@ -27,46 +26,52 @@ DONE with this!
       In final pdf, make the lists in the side boxes single spaced, make all the lists in the body, single spaced.
 
 
-Horizontal rule (line) doesn't span the page. It should.
 
-Remove section numbers. Make section title smaller size, but still bold.
+      Remove section numbers. Make section title smaller size, but still bold.
 
-When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
+      Horizontal rule (line) doesn't span the page. It should.
 
-Images don't render.
+      Fix indentation (\noindent?) of text and lists in body.  I want it to look like this:
 
-Fix indentation (\noindent?) of text and lists in body.  I want it to look like this:
+          Reason for visit: Fatigue
 
-    Reason for visit: Fatigue
+          Stress:
+            - lots of stress
+            - lots of worry
+            - anxious
 
-    Stress:
-      - lots of stress
-      - lots of worry
-      - anxious
+          Energy:
+            - low
+            - worst in first thing in morning
+            - best at 10am
 
-    Energy:
-      - low
-      - worst in first thing in morning
-      - best at 10am
-
-Not like this:
+      Not like this:
 
 
-    Reason for visit: Fatigue
+          Reason for visit: Fatigue
 
-        Stress:
-        - lots of stress
-        - lots of worry
-        - anxious
+              Stress:
+              - lots of stress
+              - lots of worry
+              - anxious
 
-        Energy:
-        - low
-        - worst in first thing in morning
-        - best at 10am
+              Energy:
+              - low
+              - worst in first thing in morning
+              - best at 10am
 
 
-Add footer.  Copy example style.
+      Add footer.  Copy example style.
 
-Create a snippet that allows me to insert the problem list into assessment.
+
+NOT done with these:
+  When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
+
+  Images don't render.
+
+
+  Make md2pdf a one-step process
+
+  Create a snippet that allows me to insert the problem list into assessment.
 
 

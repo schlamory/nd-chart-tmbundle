@@ -178,6 +178,9 @@
   skipabove=0in,
   linewidth = 1.5pt
   ]
+% I don't know why wraping text in braces helps, but I find that mdframed
+% respects wrapfigure margins when the below is like {this}, but not when it
+% is like this. KEEP THESE CURLY BRACES ON!!!
 {\textsf{\textbf{!!Alerts:}} #1}
 \end{mdframed}
 \vspace{0.85em}
@@ -188,10 +191,6 @@ linewidth = 1.5pt,
 leftmargin= 0.1in,
 skipabove=0in
 ]{sidebox}
-
-\newenvironment{alert}
-{ \begin{wrapfigure}{c}{\linewidth} \vspace{-5pt} \begin{alertbox}}
-{ \end{alertbox} \end{wrapfigure} }
 
 \NoIndentAfterEnv{wrapfigure}
 \NoIndentAfterEnv{mdframed}
