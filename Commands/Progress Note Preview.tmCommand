@@ -12,11 +12,7 @@ wd = ENV["TM_DIRECTORY"]
 visit = Nd::Visit.initialize_from_dir wd
 visit.create_dir_if_absent
 
-tex = visit.progress_note_tex
-
-tex_path = File.expand_path("progress_note.tex",visit.dir_path)
-
-File.open(tex_path,'w').write tex</string>
+File.open(visit.progress_note_tex_path,'w').write visit.progress_note_tex</string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>

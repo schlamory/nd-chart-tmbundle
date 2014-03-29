@@ -89,6 +89,12 @@ module Nd
       File.expand_path("visits",dir_path)
     end
 
+    def visit_dates
+      Dir[visits_dir_path + "/*_*_*/"].map do |s|
+        Date.strptime Pathname.new(s).basename.to_s, "%Y_%m_%d"
+      end
+    end
+
     def create_dir_if_absent
       FileUtils.mkdir_p dir_path unless Dir.exists? dir_path
       FileUtils.mkdir_p visits_dir_path unless Dir.exists? visits_dir_path
@@ -116,14 +122,14 @@ module Nd
     end
 
     def self.initialize_from_dir(dir_path)
-      patient_hash = YAML.load(File.open(File.expand_path("patient.yml",dir_path),'r').read)
+      patient_hash = YAML.load(File.read(File.expand_path("patient.yml",dir_path)))
       patient = self.from_hash patient_hash
       patient.dir_path = dir_path
 
-      medications = YAML.load(File.open(patient.medications_yml_path,'r').read)
+      medications = YAML.load(File.read(patient.medications_yml_path))
       patient.medications = medications if medications.kind_of? Array
 
-      problems = YAML.load(File.open(patient.problems_yml_path,'r').read)
+      problems = YAML.load(File.read(patient.problems_yml_path))
       patient.problems = problems if problems.kind_of? Array
 
       patient
@@ -140,9 +146,9 @@ module Nd
     end
 
     def initialize_file_with_template_if_absent(file_path,template_name)
-      text = render_file template_path template_name
       unless File.exists? file_path
-        File.open(file_path,'w').write text
+        text = render_file template_path template_name
+        File.write(file_path, text)
       end
     end
 

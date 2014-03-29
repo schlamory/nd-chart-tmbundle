@@ -20,7 +20,7 @@ RSpec.configure do |config|
 
   config.order = "random"
 
-  config.before(:each) do
+  config.after(:each) do
     clear_patients
   end
 

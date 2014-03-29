@@ -93,7 +93,8 @@
       %\titlespacing*{\paragraph}{0pc}{1.5ex \@plus2pt \@minus1pt}{10pt}
 
 \newif\iffirstsection
-\firstsectiontrue
+\firstsectionfalse
+%\firstsectiontrue % Uncomment to remove overline from first section
 \renewcommand{\section}[1]{
   \iffirstsection
     \firstsectionfalse
@@ -101,18 +102,18 @@
     \noindent \hrulefill
 
   \fi
-  \vspace{0.5em}
+  \vspace{0.3em}
   \noindent {\textsf{\textbf{\large #1}}}
-  \vspace{0.5em}
+  \vspace{0.3em}
 
   \@afterindentfalse\@afterheading % No indent after headings
 }
 
 \renewcommand{\subsection}[1]{
 
-  \vspace{0.5em}
+  \vspace{0.3em}
   \noindent {\textsf{\textbf{\normalsize #1}}}
-  \vspace{0.5em}
+  \vspace{0.3em}
 
   \@afterindentfalse\@afterheading % No indent after headings
 }
@@ -135,7 +136,7 @@
 % %itemize inside boxes
 \newlist{boxitemize}{itemize}{1}
 \setlist[boxitemize]{
-  itemsep=-0.2em,
+  itemsep=-0.4em,
   leftmargin=0.15in,
   label=\sbt,
   %these make ragged right
@@ -154,7 +155,7 @@
 %enumerate outside boxes
 \setlist[enumerate]{
   topsep=0.2em,
-  itemsep=0em,
+  itemsep=-0.4em,
   leftmargin=0.25in,
 }
 

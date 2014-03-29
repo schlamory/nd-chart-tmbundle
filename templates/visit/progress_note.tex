@@ -46,7 +46,7 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
 
 \begin{document}
 
-\begin{wrapfigure}{r}{2.5in}
+\begin{wrapfigure}{r}{2.2in}
 
   \begin{sidebox}[frametitle={Problem List}]
     <% if patient.problems.count > 0 %>
@@ -73,6 +73,8 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
     \end{boxitemize}
     <% end %>
   \end{sidebox}
+
+  \vspace{-2em}
 
 \end{wrapfigure}
 

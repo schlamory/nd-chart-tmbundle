@@ -65,7 +65,8 @@ DONE with these!
 
 
 NOT done with these:
-  When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
+
+When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
 
   Images don't render.
 

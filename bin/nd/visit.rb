@@ -20,6 +20,23 @@ module Nd
       @date ||= Date.today
     end
 
+    def previous_visit
+      return @previous_visit if @previous_visit
+      prevdate = nil
+      patient.visit_dates.sort.each do |d|
+        if d < date
+          prevdate = d
+        else
+          break
+        end
+      end
+      if prevdate
+        vdir = File.expand_path(prevdate.strftime("%Y_%m_%d"), patient.visits_dir_path)
+        @previous_visit = self.class.initialize_from_dir(vdir)
+        return @previous_visit
+      end
+    end
+
     def patient_age
       patient.age_on_date date
     end
@@ -32,24 +49,8 @@ module Nd
       File.expand_path("progress_note_body.md",dir_path)
     end
 
-    def progress_note_html_path
-      File.expand_path("progress_note.html",dir_path)
-    end
-
     def progress_note_tex_path
-      File.expand_path("progress_note.tex",dir_path)
-    end
-
-    def progress_note_body_html
-      Kramdown::Document.new(File.read(progress_note_body_path)).to_html
-    end
-
-    def progress_note_body_tex
-      Kramdown::Document.new(File.read(progress_note_body_path)).to_latex
-    end
-
-    def progress_note_html
-      render_file(template_path "progress_note.html")
+      File.expand_path("progress_note.tex",tex_dir_path)
     end
 
     def progress_note_tex
@@ -62,7 +63,7 @@ module Nd
     end
 
     def create_dir_if_absent
-      [dir_path,snapshot_dir_path,preview_dir_path,final_dir_path].each do |path|
+      [dir_path,snapshot_dir_path,tex_dir_path,image_dir_path].each do |path|
         FileUtils.mkdir_p path unless Dir.exists? path
       end
     end
@@ -79,16 +80,12 @@ module Nd
       end
     end
 
+    def tex_dir_path
+      File.expand_path("tex",dir_path)
+    end
+
     def snapshot_dir_path
       File.expand_path(".snapshot",dir_path)
-    end
-
-    def preview_dir_path
-      File.expand_path(".preview",dir_path)
-    end
-
-    def final_dir_path
-      File.expand_path(".final",dir_path)
     end
 
     def image_dir_path
@@ -110,9 +107,9 @@ module Nd
     end
 
     def initialize_file_with_template_if_absent(file_path,template_name)
-      text = render_file template_path template_name
       unless File.exists? file_path
-        File.open(file_path,'w').write text
+        text = render_file template_path template_name
+        File.write file_path, text
       end
     end
 
