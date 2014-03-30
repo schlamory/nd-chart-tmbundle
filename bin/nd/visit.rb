@@ -3,11 +3,60 @@ require 'nd/patient'
 require 'nd/serializable'
 require 'kramdown'
 
+module Kramdown::Options
+
+  define(:visit, Object, 55, "Visit") do |val|
+    unless val.kind_of? Nd::Visit
+      raise "\n\n Our parser variant needs a visit!!! \n\n"
+    end
+    val
+  end
+
+end
+
 class Kramdown::Converter::Latex
 
   def convert_header(el, opts)
+    # Make text follow headers wit only one line break
     type = @options[:latex_headers][output_header_level(el.options[:level]) - 1]
     "\\#{type}{#{inner(el, opts)}}\n"
+  end
+
+  def convert_standalone_image(el, opts, img)
+      attrs = attribute_list(el)
+      <<-str.gsub /^\s+/, ""
+      \\begin{figure}[h!]
+      \\begin{center}
+      #{img}
+      \\caption{#{escape(el.children.first.attr['alt'])}}
+      \\end{center}
+      \\end{figure}#{attrs}
+      str
+  end
+
+  def convert_img(el, opts)
+    if el.attr['src'] =~ /^(https?|ftps?):\/\//
+      warning("Cannot include non-local image")
+      ''
+    elsif !el.attr['src'].empty?
+      @data[:packages] << 'graphicx'
+      # Include multiple images on one line
+      optarg, imagearg = el.attr['src'].split "::"
+      unless imagearg
+        images = optarg.split ","
+        options = "width=#{0.96/images.count}\\textwidth"
+      else
+        images = imagearg.split ","
+        options = optarg
+      end
+      images.map do |name|
+        path = "\"#{@options[:visit].dir_path}/#{name.gsub(/\.\w+$/,"")}\""
+        "\\includegraphics[#{options}]{#{path}}"
+      end.join("\n")
+    else
+      warning("Cannot include image with empty path")
+      ''
+    end
   end
 
 end
@@ -54,7 +103,8 @@ module Nd
     end
 
     def progress_note_body_tex
-      Kramdown::Document.new(File.read(progress_note_body_path)).to_latex
+      opts = {auto_ids: false, visit: self}
+      Kramdown::Document.new(File.read(progress_note_body_path), opts).to_latex
     end
 
     def progress_note_tex

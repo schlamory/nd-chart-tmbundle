@@ -7,11 +7,9 @@
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
-
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
 
-print '\includegraphics[width=0.3\pagewidth]{&lt;?=image_dir_path?&gt;'
-print "${1|#{visit.image_file_names.join ','}|}}"</string>
+print "![${1|caption|}](${2|height=2in|}::#{visit.image_file_names.map {|n| "img/" + n}.join ','})"</string>
 	<key>input</key>
 	<string>word</string>
 	<key>inputFormat</key>

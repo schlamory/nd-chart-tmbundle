@@ -1,4 +1,4 @@
-DONE with these!
+#DONE with these!
         ICD-9 dictionary
 
         I want:
@@ -68,13 +68,13 @@ DONE with these!
 
       Create a snippet that allows me to insert the problem list into assessment.
 
+      Images don't render.
 
-NOT done with these:
+
+#NOT done with these:
 
 
-Images don't render.
-
-Make md2pdf a one-step process
+  Make md2pdf a one-step process
 
 
 
