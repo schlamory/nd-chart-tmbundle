@@ -96,6 +96,7 @@
 \firstsectionfalse
 %\firstsectiontrue % Uncomment to remove overline from first section
 \renewcommand{\section}[1]{
+
   \iffirstsection
     \firstsectionfalse
   \else
@@ -196,4 +197,9 @@ skipabove=0in
 \NoIndentAfterEnv{wrapfigure}
 \NoIndentAfterEnv{mdframed}
 
+%-------------------------------------------------------------------
+% Figure styles
+\setlength{\abovecaptionskip}{0.5em}
+\setlength{\belowcaptionskip}{-1.5em}
+\setlength{\intextsep}{0.5em}
 
