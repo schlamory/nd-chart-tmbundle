@@ -1,92 +1,27 @@
-#DONE with these!
-        ICD-9 dictionary
-
-        I want:
-        - abdominal pain icd
-        to turn into:
-        - abdominal pain (666)
-        Right now, it seems to choke on multi-word diagnoses.
-
-        I want to override old definitions when I put in new ones, e.g. when I do
-          abdominal pain icd 666
-        and then
-          abdominal pain icd 777
-        I want
-          abdominal pain icd
-        to turn into
-          abdominal pain (777)
-
-        side box list environment stretches when it wraps, and looks bad, e.g.:
-        | * Tobacco     use    (305.1)|
-        |   [smokeless]               |
-        Should be:
-        | * Tobacco use (305.1)       |
-        |   [smokeless]               |
-
-      In final pdf, make the lists in the side boxes single spaced, make all the lists in the body, single spaced.
-
-
-
-      Remove section numbers. Make section title smaller size, but still bold.
-
-      Horizontal rule (line) doesn't span the page. It should.
-
-      Fix indentation (\noindent?) of text and lists in body.  I want it to look like this:
-
-          Reason for visit: Fatigue
-
-          Stress:
-            - lots of stress
-            - lots of worry
-            - anxious
-
-          Energy:
-            - low
-            - worst in first thing in morning
-            - best at 10am
-
-      Not like this:
-
-
-          Reason for visit: Fatigue
-
-              Stress:
-              - lots of stress
-              - lots of worry
-              - anxious
-
-              Energy:
-              - low
-              - worst in first thing in morning
-              - best at 10am
-
-
-      Add footer.  Copy example style.
-
-
-      When I make a follow up visit, copy the past exisiting visit so that I can use the previous visit as a template for the current visit.
-
-      Create a snippet that allows me to insert the problem list into assessment.
-
-      Images don't render.
-
-
 #NOT done with these:
 
 
   Make md2pdf a one-step process
- 
-  Make Dr. Laura Figoski, ND, phone and email in the header 1-2 font sizes bigger
- 
-  Currently the final output pdf gets cut off when prining (top and bottom)... I can solve this by having it "scale to fit" when I print, but it'd be easier if the output document didn't get cut off.
-  
-  Can the dictionary be easily sorted into alphabetical order?
-  
-  Alerts don't render
-  
-  Images (sometimes) overlap with side boxes
-  
-  
 
+  Can the dictionary be easily sorted into alphabetical order?
+
+#DONE WITH THESE!
+
+  Alerts don't render
+
+  Make Dr. Laura Figoski, ND, phone and email in the header 1-2 font sizes bigger
+
+  LF says:
+        Currently the final output pdf gets cut off when prining (top and bottom)... I can solve this by having it "scale to fit" when I print, but it'd be easier if the output document didn't get cut off.
+  AS says:
+        I've changed the margins, but you should feel free to monkey with them. Look at lines 33-45 in templates/visit/NDCHart.cls
+
+
+
+#Not gonna do this
+  LF says:
+    Images (sometimes) overlap with side boxes
+  AS says:
+    make the images smaller, or break into several image tags or put the images elsewhere. This is hard to make 'just work'.
 
 
