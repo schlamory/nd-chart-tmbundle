@@ -75,6 +75,18 @@
 
 
   Make md2pdf a one-step process
+ 
+  Make Dr. Laura Figoski, ND, phone and email in the header 1-2 font sizes bigger
+ 
+  Currently the final output pdf gets cut off when prining (top and bottom)... I can solve this by having it "scale to fit" when I print, but it'd be easier if the output document didn't get cut off.
+  
+  Can the dictionary be easily sorted into alphabetical order?
+  
+  Alerts don't render
+  
+  Images (sometimes) overlap with side boxes
+  
+  
 
 
 
