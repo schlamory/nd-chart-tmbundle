@@ -55,17 +55,23 @@ module Nd
     private
     def replace(index,row)
       table[index] = row
-      CSV.open(table_path,"w") do |csv|
-        csv << table.headers
-        table.each do |row|
-          csv << row
-        end
-      end
+      save
     end
 
     def append(row)
       table << row
-      CSV.open(table_path,"a") {|csv| csv << row}
+      save
+    end
+
+    def save
+      CSV.open(table_path,"w") do |csv|
+        rows = table.to_a
+        csv << rows.shift
+        rows.sort_by! {|r| r[0]}
+        rows.each do |row|
+          csv << row
+        end
+      end
     end
 
   end

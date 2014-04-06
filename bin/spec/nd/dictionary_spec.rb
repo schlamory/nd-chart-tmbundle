@@ -50,6 +50,9 @@ describe Nd do
         it "the table has the right number of rows" do
           expect(dict.table.length).to be 3
         end
+        it "the rows are sorted" do
+          expect(dict.table.map {|r| r[0]}).to eq ["barKey","bazKey", "fooKey"]
+        end
       end
 
     end
@@ -98,8 +101,8 @@ describe Nd do
         it "the table has the right number of rows" do
           expect(dict.table.length).to be 2
         end
-        it "the last row of the table has the values array" do
-          expect(dict.table[0].fields).to eq ["fookey", "FOOV1", "FOOV2"]
+        it "the table has right sorted keys" do
+          expect(dict.table.map {|r| r[0]}).to eq ["barKey","fookey"]
         end
       end
 
