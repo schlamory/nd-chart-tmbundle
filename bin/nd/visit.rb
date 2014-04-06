@@ -22,6 +22,10 @@ class Kramdown::Converter::Latex
     "\\#{type}{#{inner(el, opts)}}\n"
   end
 
+  def convert_hr(el, opts)
+    "\\pagebreak\n\\sectionoverlinefalse\n"
+  end
+
   def convert_standalone_image(el, opts, img)
       attrs = attribute_list(el)
       <<-str.gsub /^\s+/, ""
