@@ -51,7 +51,7 @@ case type
 when "diagnosis"
   print "#{indent}diagnosis: #{key}\n#{indent}icd9: #{code}"
 else  
-  print line.gsub(/#{words.join '\s+'}\s+/, key) + " (#{code})"
+  print line.gsub(/#{words.join '\s+'}\s+(#{code}\s+)?/, key) + " (#{code})"
 end
 </string>
 	<key>input</key>

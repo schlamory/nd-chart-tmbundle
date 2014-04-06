@@ -1,34 +1,34 @@
 name,icd_9
-Stress,308.9
-Fatigue,780.79
-Depression,311
-Constipation,564
-Anxiety,300.00
-Hashimotos,E06.3
-Hyperlipidemia,E78.2
-Neutropenia,D70.9
-MVP,I34.1
-Gas and Bloating,787.3
-Food Intolerance,579.8
-Stress,780.79
-Fibroids,218.9
-Menorrhagia,626.2
 Acne,706.2
-Insomina,G47.00
-Dysbiosis,K63.9
-Atopy,V15.09
-Eczema,692.89
-Eosinophillia,D72.1
-Psoriasis,696.1
 Alcohol Use,305.0
+Anxiety,300.00
+Atopy,V15.09
+Constipation,564
+Depression,311
 Diarrhea chronic,787.91
+Diverticulosis,562.10
+Dysbiosis,K63.9
+Eczema,692.89
+Elevated Blood Pressure,796.2
+Eosinophillia,D72.1
+Fatigue,780.79
 Fatty Liver,K76.0
 Fatty Pancreas,K86.8
-Obesity,278.00
-Insomnia with sleep,apnea,780.51
-SIBO,008.5
-Diverticulosis,562.10
+Fibroids,218.9
+Food Intolerance,579.8
+Gas and Bloating,787.3
+Hashimotos,E06.3
 Hemorrhoids,455
-Rash,782.1
+Hyperlipidemia,E78.2
+Insomina,G47.00
+Insomnia with sleep,apnea,780.51
+MVP,I34.1
+Menorrhagia,626.2
+Neutropenia,D70.9
+Obesity,278.00
 Polypharmacy,977.9Hypertension,796.2
-Elevated Blood Pressure,796.2
+Psoriasis,696.1
+Rash,782.1
+SIBO,008.5
+Stress,780.79
+Stress,308.9

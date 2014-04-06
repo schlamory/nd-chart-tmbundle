@@ -7,9 +7,7 @@
 last_name: ${2}
 dob: ${3}
 
-allergies:
-
-caregivers:
+alert:
 </string>
 	<key>name</key>
 	<string>Patient</string>
