@@ -8,23 +8,22 @@
 %	HEADER
 %----------------------------------------------------------------------------------------
 
-\newcommand{\pagenumber}{ \thepage\ of\ \pageref{LastPage}}
 \fancyhf{}  %this removes page numbering at the bottom of the page
+\newcommand{\pagenumber}{{\large \thepage\ of\ \pageref{LastPage}}}
 
-\newcommand{\contact}{
+\newcommand{\contact}{{\large
 Dr. Laura Figoski, ND
-$|$
+\  $|$ \
 (415) 617-9252
-$|$
+\ $|$ \
 doctor@lauranaturopath.com
-}
-
+}}
 \newcommand{\vdate}{
  Date of Service: <%= date.strftime "%Y/%-m/%-d" %>
 }
 
 \newcommand{\patient}{
-Name: <%= patient.name %>
+Name: <%= patient.first_name %> <%= patient.last_name %>
 \hfill
 Age: <%= patient.age %>
 \hfill
@@ -48,8 +47,8 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
 
 \begin{wrapfigure}{r}{2.2in}
 
-  \begin{sidebox}[frametitle={Problem List}]
-    <% if patient.problems.count > 0 %>
+  \begin{sidebox}[frametitle=\textsf{Problem List}]
+    <% if patient.problems and patient.problems.count > 0 %>
     \begin{boxitemize}
       \raggedright
       <% patient.problems.each do |p| %>
@@ -57,13 +56,15 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
               <%= "(#{p.icd9})" unless p.icd9.nil? %> <%= "[#{p.note}]" unless p.note.nil? %>
       <% end %>
     \end{boxitemize}
+    <% else %>
+    None
     <% end %>
   \end{sidebox}
 
   \vspace*{11pt}
 
-  \begin{sidebox}[frametitle={Currently Taking}]
-    <% if patient.medications.count > 0 %>
+  \begin{sidebox}[frametitle=\textsf{Currently Taking}]
+    <% if patient.medications and patient.medications.count > 0 %>
     \begin{boxitemize}
       \raggedright
       <% patient.medications.each do |m| %>
@@ -71,6 +72,8 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
               <%= "(#{m.dose})" unless m.dose.nil? %>  <%= "[#{m.note}]" unless m.note.nil? %>
       <% end %>
     \end{boxitemize}
+    <% else %>
+    None
     <% end %>
   \end{sidebox}
 
@@ -80,8 +83,10 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
 
 \nullspace
 
-<% if (patient.alerts rescue false) %>
-\alertbox{ patient.alerts }
+<% if ((patient.alert.strip != "") rescue false) %>
+\vspace{1.2em}
+
+\alertbox{ <%= patient.alert %> }
 <% end %>
 
 <%= progress_note_body_tex %>

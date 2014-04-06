@@ -33,10 +33,10 @@
 \RequirePackage[
 		left=0.5in,%
                  right=0.5in,%
-		top=1.25in,%
+		top=1.65in,%
 		headheight=0.75in,%
 		headsep=0.1in,
-		bottom=1.0in,%
+		bottom=1.4in,%
 		letterpaper]{geometry}%
 
 \RequirePackage[
@@ -92,29 +92,31 @@
       %\titlespacing*{\subsubsection}{0pc}{2ex \@plus2.5pt \@minus1.5pt}{0pt}
       %\titlespacing*{\paragraph}{0pc}{1.5ex \@plus2pt \@minus1pt}{10pt}
 
-\newif\iffirstsection
-\firstsectionfalse
+\newif\ifsectionoverline
+\sectionoverlinetrue
 %\firstsectiontrue % Uncomment to remove overline from first section
 \renewcommand{\section}[1]{
 
-  \iffirstsection
-    \firstsectionfalse
-  \else
+  \ifsectionoverline
+    \vspace{-0.3em}
     \noindent \hrulefill
 
+  \else
+    \sectionoverlinetrue
+
   \fi
-  \vspace{0.3em}
-  \noindent {\textsf{\textbf{\large #1}}}
-  \vspace{0.3em}
+  \vspace{0.2em}
+  \noindent {\textsf{\textbf{\normalsize #1}}}
+  \vspace{0.2em}
 
   \@afterindentfalse\@afterheading % No indent after headings
 }
 
 \renewcommand{\subsection}[1]{
 
-  \vspace{0.3em}
+  \vspace{0.2em}
   \noindent {\textsf{\textbf{\normalsize #1}}}
-  \vspace{0.3em}
+  \vspace{0.2em}
 
   \@afterindentfalse\@afterheading % No indent after headings
 }
@@ -126,6 +128,7 @@
 \newcommand{\nullspace}{
 \
 \vspace{-1em}
+\vspace{0.001em}
 }
 
 % ---------------------------------------------------------------------
@@ -147,17 +150,23 @@
 
 %itemize outside boxes
 \setlist[itemize]{
-  topsep=0.2em,
-  itemsep=-0.4em,
+  topsep=0.0em,
+  partopsep=0.0em,
+  parsep=0em,
+  itemsep=0em,
   leftmargin=0.25in,
   label=\sbt,
+  after=\vspace{0.8em}
 }
 
 %enumerate outside boxes
 \setlist[enumerate]{
-  topsep=0.2em,
-  itemsep=-0.4em,
+  topsep=0.0em,
+  partopsep=0.0em,
+  parsep=0em,
+  itemsep=0em,
   leftmargin=0.25in,
+  after=\vspace{0.8em}
 }
 
 \newcommand*\NoIndentAfterEnv[1]{%
@@ -183,7 +192,7 @@
 % I don't know why wraping text in braces helps, but I find that mdframed
 % respects wrapfigure margins when the below is like {this}, but not when it
 % is like this. KEEP THESE CURLY BRACES ON!!!
-{\textsf{\textbf{!!Alerts:}} #1}
+{\textsf{\textbf{!!Alert:}} #1}
 \end{mdframed}
 \vspace{0.85em}
 }
