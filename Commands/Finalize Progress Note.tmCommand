@@ -9,16 +9,16 @@
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
-visit.preview_progress_note
+visit.finalize_progress_note
 </string>
 	<key>input</key>
 	<string>none</string>
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>@L</string>
+	<string>@K</string>
 	<key>name</key>
-	<string>Preview Progress Note</string>
+	<string>Finalize Progress Note</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
@@ -26,7 +26,7 @@ visit.preview_progress_note
 	<key>outputLocation</key>
 	<string>discard</string>
 	<key>uuid</key>
-	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+	<string>52D8AEBE-E5BF-47FB-9285-D22AE41F6E1F</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

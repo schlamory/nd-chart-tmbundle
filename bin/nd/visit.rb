@@ -2,6 +2,9 @@ require 'nd/util'
 require 'nd/patient'
 require 'nd/serializable'
 require 'kramdown'
+require 'pathname'
+require 'shellwords'
+require 'fileutils'
 
 module Kramdown::Options
 
@@ -69,6 +72,31 @@ module Nd
   class Visit < Serializable
     attr_accessor :date, :patient
 
+    def preview_progress_note
+      create_dir_if_absent
+      File.write progress_note_tex_path, progress_note_tex
+      pdflatex progress_note_tex_path
+      open_file_with_preview progress_note_pdf_path
+    end
+
+    def finalize_progress_note
+      if File.exists? final_progress_note_pdf_path
+        raise "\n\nA finalized progress note (#{final_progress_note_pdf_path}) already exists!\n\n"
+      end
+
+      create_dir_if_absent
+      unless File.exists? progress_note_tex_path
+        File.write progress_note_tex_path, progress_note_tex
+        pdflatex progress_note_tex_path
+      end
+      pdflatex progress_note_tex_path
+      FileUtils.cp(progress_note_pdf_path, final_progress_note_pdf_path)
+    end
+
+    def final_progress_note_pdf_path
+      File.expand_path(date.strftime("%Y_%m_%d") + "_note.pdf", patient.dir_path)
+    end
+
     def date
       @date ||= Date.today
     end
@@ -104,6 +132,10 @@ module Nd
 
     def progress_note_tex_path
       File.expand_path("progress_note.tex",tex_dir_path)
+    end
+
+    def progress_note_pdf_path
+      File.expand_path("progress_note.pdf",tex_dir_path)
     end
 
     def progress_note_body_tex
@@ -162,6 +194,18 @@ module Nd
 
     def template_path(filename)
       File.expand_path("templates/visit/"+filename,BUNDLE_PATH)
+    end
+
+    def open_file_with_preview(path)
+      cmd = <<-cmd
+      osascript -e "tell application \\"Preview\\" to open \\"#{path}\\""
+      cmd
+      `#{cmd}`
+    end
+
+    def pdflatex(path)
+      path = Pathname.new(path)
+      `cd #{Shellwords.escape path.dirname} && pdflatex #{Shellwords.escape path.basename}`
     end
 
   end
