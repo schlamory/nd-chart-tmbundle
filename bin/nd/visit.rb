@@ -76,7 +76,7 @@ module Nd
       create_dir_if_absent
       File.write progress_note_tex_path, progress_note_tex
       pdflatex progress_note_tex_path
-      open_file_with_preview progress_note_pdf_path
+      #open_file_with_preview progress_note_pdf_path
     end
 
     def finalize_progress_note
