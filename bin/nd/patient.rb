@@ -13,6 +13,7 @@ require 'nd/problem'
 # first_name:
 # last_name:
 # dob:
+# gender:
 #
 # alert:
 #
@@ -23,9 +24,9 @@ module Nd
 
     ND_PATIENTS_DIR = ENV["ND_PATIENTS_DIR"]
 
-    attr_accessor :first_name, :last_name, :date_of_birth, :dir_path
+    attr_accessor :first_name, :last_name, :date_of_birth, :dir_path, :gender
     attr_reader :problems, :medications, :allergies
-    attr_reader :alert
+    attr_accessor :alert
 
     def allergies=(values)
       values = [] if values.nil?
@@ -40,10 +41,6 @@ module Nd
     def medications=(values)
       values = [] if values.nil?
       @medications = values_with_type(values,Nd::Medication)
-    end
-
-    def alert=(value)
-      @alert = value
     end
 
     def name

@@ -25,6 +25,8 @@ doctor@lauranaturopath.com
 \newcommand{\patient}{
 Name: <%= patient.first_name %> <%= patient.last_name %>
 \hfill
+Gender: <%= patient.gender %>
+\hfill
 Age: <%= patient.age %>
 \hfill
 DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
