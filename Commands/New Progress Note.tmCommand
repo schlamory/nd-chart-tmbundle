@@ -13,7 +13,13 @@ visit = Nd::Visit.new.tap do |v|
   if v.patient.nil?
     raise "\n\nThe current directory (#{ENV["TM_DIRECTORY"]}) does not include a patient record. Try calling 'New Progress Note' from within the patient's patient.yml file.\n\n"
   end
-  v.date = Nd.parse_date(gets) || Date.today
+  line = gets
+  date = Nd.parse_date(line) 
+  if date 
+    v.date = date
+  else
+    print line
+  end
   v
 end
 

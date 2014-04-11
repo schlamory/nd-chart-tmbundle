@@ -76,10 +76,7 @@ module Nd
       create_dir_if_absent
       File.write progress_note_tex_path, progress_note_tex
       pdflatex progress_note_tex_path
-      if File.exists? progress_note_pdf_path
-        FileUtils.chmod 0644, progress_note_pdf_path
-        open_file_with_preview progress_note_pdf_path
-      end
+      open_file_with_shell progress_note_pdf_path
     end
 
     def finalize_progress_note
@@ -94,10 +91,7 @@ module Nd
       end
       pdflatex progress_note_tex_path
       FileUtils.cp(progress_note_pdf_path, final_progress_note_pdf_path)
-      if File.exists? progress_note_pdf_path
-        FileUtils.chmod 0644, final_progress_note_pdf_path
-        open_file_with_preview final_progress_note_pdf_path
-      end
+      open_file_with_shell final_progress_note_pdf_path
     end
 
     def final_progress_note_pdf_path
@@ -209,15 +203,8 @@ module Nd
       File.expand_path("templates/visit/"+filename,BUNDLE_PATH)
     end
 
-    def open_file_with_preview(path)
-      cmd = <<-cmd
-      osascript -e "tell application \\"Preview\\" to open \\"#{path}\\""
-      cmd
-      `#{cmd}`
-      cmd = <<-cmd
-      osascript -e "tell application \\"Preview\\" to activate"
-      cmd
-      `#{cmd}`
+    def open_file_with_shell(path)
+      `open #{Shellwords.escape path}`
     end
 
     def pdflatex(path)
