@@ -25,6 +25,18 @@ module Nd
 
     end
 
+    def self.load_yaml_from_path(path)
+      begin
+        YAML.load(File.read(path))
+      rescue Exception => e
+        raise "\n\nError loading YAML file:\n #{path}:\n\n#{e}"
+      end
+    end
+
+    def load_yaml_from_path(path)
+      self.class.load_yaml_from_path path
+    end
+
     protected
 
     def render_file(path)

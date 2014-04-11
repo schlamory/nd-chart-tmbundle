@@ -44,7 +44,7 @@ module Nd
     end
 
     def name
-      "#{last_name}, #{first_name}"
+      "#{first_name} #{last_name}"
     end
 
     def name=(value)
@@ -114,13 +114,13 @@ module Nd
     end
 
     def self.patient_for_dir(dir)
-      patient_dir = self.patient_dir_containing_dir(dir)
+      patient_dir = self.patient_dir_containing_path(dir)
       if patient_dir
         self.initialize_from_dir(patient_dir)
       end
     end
 
-    def self.patient_dir_containing_dir(dir)
+    def self.patient_dir_containing_path(dir)
       while dir != "/"
         if File.exists? File.expand_path("patient.yml", dir)
           return dir
@@ -130,17 +130,26 @@ module Nd
     end
 
     def self.initialize_from_dir(dir_path)
-      patient_hash = YAML.load(File.read(File.expand_path("patient.yml",dir_path)))
-      patient = self.from_hash patient_hash
+
+      dir_path = patient_dir_containing_path(dir_path)
+
+      patient = self.from_hash self.load_yaml_from_path File.expand_path("patient.yml", dir_path)
       patient.dir_path = dir_path
 
-      medications = YAML.load(File.read(patient.medications_yml_path))
-      patient.medications = medications if medications.kind_of? Array
-
-      problems = YAML.load(File.read(patient.problems_yml_path))
-      patient.problems = problems if problems.kind_of? Array
+      patient.load_medications
+      patient.load_problems
 
       patient
+    end
+
+    def load_medications
+      medications = load_yaml_from_path medications_yml_path
+      self.medications = medications if medications.kind_of? Array
+    end
+
+    def load_problems
+      problems = load_yaml_from_path problems_yml_path
+      self.problems = problems if problems.kind_of? Array
     end
 
     protected

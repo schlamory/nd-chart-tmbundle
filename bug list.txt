@@ -1,15 +1,12 @@
 #NOT done with these:
 
-  Make md2pdf a one-step process - and ultimatley have the final visit pdf live in main pt directly, rather than being burried in the visits/2014_04_04/tex/... directory.  Have final pdf file name begin with date of visit (ie: 2014_04_04 progress note.pdf)
 
-  Can the dictionary be easily sorted into alphabetical order?
-  
+#DONE WITH THESE!
+
   Make "patient[tab]" insert the patient's full name ie: Amory Schlender
-  
+
   Make "age[tab]" insert the patent's age ie: 30
-    
-  Add support for "gender" to be added to patient.yml and have it render in the header with other pt info.
-  
+
   NEW BUG!!!! I couldn't get the new preview command to work.  Got the following error:
     "/Users/laurafigoski/Library/Application Support/Avian/Bundles/ND Chart.tmbundle/bin/nd/visit.rb:169:in `rescue in initialize_from_dir':  (RuntimeError)
 
@@ -18,7 +15,11 @@
     from /Users/laurafigoski/Library/Application Support/Avian/Bundles/ND Chart.tmbundle/bin/nd/visit.rb:162:in `initialize_from_dir'
     from Preview Progress Note:4:in `<main>'"
 
-#DONE WITH THESE!
+  Make md2pdf a one-step process - and ultimatley have the final visit pdf live in main pt directly, rather than being burried in the visits/2014_04_04/tex/... directory.  Have final pdf file name begin with date of visit (ie: 2014_04_04 progress note.pdf)
+
+  Can the dictionary be easily sorted into alphabetical order?
+
+  Add support for "gender" to be added to patient.yml and have it render in the header with other pt info.
 
   Alerts don't render
 

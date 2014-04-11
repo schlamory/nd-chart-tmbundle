@@ -9,6 +9,7 @@
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
+
 visit.finalize_progress_note
 </string>
 	<key>input</key>

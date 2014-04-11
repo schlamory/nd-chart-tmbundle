@@ -29,8 +29,8 @@ describe Nd::Patient do
         expect(File.exists? patient.problems_yml_path).to be_true
       end
 
-      it ".patient_dir_containing_dir patient.visits_dir_path is patient.dir_path" do
-        expect(Nd::Patient.patient_dir_containing_dir patient.visits_dir_path).to eq patient.dir_path
+      it ".patient_dir_containing_path patient.visits_dir_path is patient.dir_path" do
+        expect(Nd::Patient.patient_dir_containing_path patient.visits_dir_path).to eq patient.dir_path
       end
 
     end

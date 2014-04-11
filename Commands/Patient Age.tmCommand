@@ -8,26 +8,25 @@
 	<string>#!/usr/bin/env ruby
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
-visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
+patient = Nd::Patient.initialize_from_dir ENV["TM_DIRECTORY"]
 
-visit.preview_progress_note
-</string>
+print patient.age</string>
 	<key>input</key>
-	<string>none</string>
+	<string>word</string>
 	<key>inputFormat</key>
 	<string>text</string>
-	<key>keyEquivalent</key>
-	<string>@L</string>
 	<key>name</key>
-	<string>Preview Progress Note</string>
+	<string>Patient Age</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
 	<string>text</string>
 	<key>outputLocation</key>
-	<string>discard</string>
+	<string>replaceInput</string>
+	<key>tabTrigger</key>
+	<string>age</string>
 	<key>uuid</key>
-	<string>863F5B37-1523-4B45-9650-25B904D96959</string>
+	<string>D2388614-1280-4782-8D79-C3381BD97E21</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

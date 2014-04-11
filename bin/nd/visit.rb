@@ -76,7 +76,10 @@ module Nd
       create_dir_if_absent
       File.write progress_note_tex_path, progress_note_tex
       pdflatex progress_note_tex_path
-      #open_file_with_preview progress_note_pdf_path
+      if File.exists? progress_note_pdf_path
+        FileUtils.chmod 0644, progress_note_pdf_path
+        open_file_with_preview progress_note_pdf_path
+      end
     end
 
     def finalize_progress_note
@@ -91,6 +94,10 @@ module Nd
       end
       pdflatex progress_note_tex_path
       FileUtils.cp(progress_note_pdf_path, final_progress_note_pdf_path)
+      if File.exists? progress_note_pdf_path
+        FileUtils.chmod 0644, final_progress_note_pdf_path
+        open_file_with_preview final_progress_note_pdf_path
+      end
     end
 
     def final_progress_note_pdf_path
@@ -113,8 +120,12 @@ module Nd
       end
       if prevdate
         vdir = File.expand_path(prevdate.strftime("%Y_%m_%d"), patient.visits_dir_path)
-        @previous_visit = self.class.initialize_from_dir(vdir)
-        return @previous_visit
+        begin
+          @previous_visit = self.class.initialize_from_dir(vdir)
+          return @previous_visit
+        rescue
+          nil
+        end
       end
     end
 
@@ -158,15 +169,17 @@ module Nd
       end
     end
 
+    def self.visit_dir_containing_path(path)
+      patient_dir = Nd::Patient.patient_dir_containing_path path
+      suffix = path.sub(patient_dir,"")
+      patient_dir + suffix.sub(/(\/visits\/\d+\_\d+\_\d+).*/,'\1')
+    end
+
     def self.initialize_from_dir(dir_path)
-      begin
-        Visit.new.tap do |v|
-          v.date = Date.strptime(dir_path.gsub(/.*\//,''), "%Y_%m_%d")
-          patient_dir = Nd::Patient.patient_dir_containing_dir dir_path
-          v.patient = Nd::Patient.initialize_from_dir patient_dir
-        end
-      rescue
-        raise "\n\nThe working directory (#{dir_path}) is not a patient visit directory. Please try again from a patient visit directory.\n\n"
+      dir_path = visit_dir_containing_path dir_path
+      Visit.new.tap do |v|
+        v.patient = Nd::Patient.initialize_from_dir dir_path
+        v.date = Date.strptime(dir_path.gsub(/.*\//,''), "%Y_%m_%d")
       end
     end
 
@@ -199,6 +212,10 @@ module Nd
     def open_file_with_preview(path)
       cmd = <<-cmd
       osascript -e "tell application \\"Preview\\" to open \\"#{path}\\""
+      cmd
+      `#{cmd}`
+      cmd = <<-cmd
+      osascript -e "tell application \\"Preview\\" to activate"
       cmd
       `#{cmd}`
     end

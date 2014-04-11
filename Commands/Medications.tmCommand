@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
 require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
@@ -12,13 +14,21 @@ print visit.render_template "progress_note_medications.md"
 </string>
 	<key>input</key>
 	<string>word</string>
+	<key>inputFormat</key>
+	<string>text</string>
 	<key>name</key>
 	<string>Medications</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>replaceInput</string>
 	<key>tabTrigger</key>
 	<string>medications</string>
 	<key>uuid</key>
 	<string>F5EECC83-5C9D-4AF9-B4ED-06249D37E976</string>
+	<key>version</key>
+	<integer>2</integer>
 </dict>
 </plist>
