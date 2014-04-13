@@ -1,5 +1,6 @@
 #NOT done with these:
 
+  Dictionary not quite working right.  When I try to define a new entry ie:Overweight 278.02 icd[tab] it returns: Overweight 278.02 (unk) and does not define anything new in the dictionary.
 
 #DONE WITH THESE!
 
