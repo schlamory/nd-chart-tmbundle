@@ -1,8 +1,9 @@
 #NOT done with these:
 
+#DONE WITH THESE!
+
   Dictionary not quite working right.  When I try to define a new entry ie:Overweight 278.02 icd[tab] it returns: Overweight 278.02 (unk) and does not define anything new in the dictionary.
 
-#DONE WITH THESE!
 
   Make "patient[tab]" insert the patient's full name ie: Amory Schlender
 
