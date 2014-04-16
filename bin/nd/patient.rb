@@ -83,7 +83,7 @@ module Nd
     end
 
     def dir_path
-      @dir_path ||= File.expand_path(name,ND_PATIENTS_DIR)
+      @dir_path ||= File.expand_path("#{last_name}, #{first_name}",ND_PATIENTS_DIR)
     end
 
     def visits_dir_path
