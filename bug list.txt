@@ -1,9 +1,11 @@
 #NOT done with these:
 
-  Dictionary not quite working right.  When I try to define a new entry ie:Overweight 278.02 icd[tab] it returns: Overweight 278.02 (unk) and does not define anything new in the dictionary.
+When it makes a new patient folder, it makes the folder Firstname Lastname, but I would like it to make it Lastname, Firstname so it will be sorted alphabetically in the finder.
 
 #DONE WITH THESE!
 
+  Dictionary not quite working right.  When I try to define a new entry ie:Overweight 278.02 icd[tab] it returns: Overweight 278.02 (unk) and does not define anything new in the dictionary.
+  
   Make "patient[tab]" insert the patient's full name ie: Amory Schlender
 
   Make "age[tab]" insert the patent's age ie: 30
