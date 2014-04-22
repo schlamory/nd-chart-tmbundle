@@ -1,8 +1,10 @@
 #NOT done with these:
 
-When it makes a new patient folder, it makes the folder Firstname Lastname, but I would like it to make it Lastname, Firstname so it will be sorted alphabetically in the finder.
 
+=======
 #DONE WITH THESE!
+
+  When it makes a new patient folder, it makes the folder Firstname Lastname, but I would like it to make it Lastname, Firstname so it will be sorted alphabetically in the finder.
 
   Dictionary not quite working right.  When I try to define a new entry ie:Overweight 278.02 icd[tab] it returns: Overweight 278.02 (unk) and does not define anything new in the dictionary.
   

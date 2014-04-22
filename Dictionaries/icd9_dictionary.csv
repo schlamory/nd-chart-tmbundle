@@ -28,11 +28,13 @@ Food Intolerance,579.8
 Gas and Bloating,787.3
 Graves Disease,242.0
 HPV,R87.810
+Hair Loss,704.09
 Hashimotos,245.2
 Heartburn,787.1
 Hemorrhoids,455
 Hepatitis C,070.54
 Herpes Zoster,B02.9
+High Cortisol,255.3
 Hyperlipidemia,E78.2
 Hypertension,796.2
 Hypothyroid iatrogenic,244.8
@@ -49,6 +51,7 @@ Migraine,346.90
 Multiple Sclerosis,340
 Neutropenia,D70.9
 Obesity,278.00
+Oligomenorrhea,626.1
 Osteopenia,733.90
 Overweight,278.02
 Pain,780.96
@@ -63,3 +66,4 @@ Sleep Apnea,780.57
 Sleep Cycle Disruption,307.45
 Stress,308.9
 name: Abdominal Pain,789.0
+name: High Cortisol,255.3
