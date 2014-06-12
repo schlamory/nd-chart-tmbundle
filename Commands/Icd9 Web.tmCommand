@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby
+
+line = gets
+
+if line
+  words = line.scan(/[^\s]+/).to_a
+  puts line
+  `osascript -e 'tell application "Safari" to open location "http://www.icd9data.com/Search/?q=#{words.last}"'`
+else
+  `osascript -e 'tell application "Safari" to open location "http://www.icd9data.com/"'`
+end
+
+`osascript -e 'tell application "Safari" to activate'`
+</string>
+	<key>input</key>
+	<string>line</string>
+	<key>inputFormat</key>
+	<string>text</string>
+	<key>name</key>
+	<string>ICD Web</string>
+	<key>outputCaret</key>
+	<string>afterOutput</string>
+	<key>outputFormat</key>
+	<string>text</string>
+	<key>outputLocation</key>
+	<string>discard</string>
+	<key>tabTrigger</key>
+	<string>icdw</string>
+	<key>uuid</key>
+	<string>B27FA651-D50F-4300-ACD3-BD9D777C11B5</string>
+	<key>version</key>
+	<integer>2</integer>
+</dict>
+</plist>
