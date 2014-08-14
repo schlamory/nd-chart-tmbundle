@@ -1,51 +1,95 @@
 name,icd_9
+Abdominal Pain,789.0
+Abdominal Pain,789.0
+Abnormal Lab Finding,796.4
+Abnormal Lab Result,796.4
+Abnormal Lab Test,796.4
+Abnormal hormone test,796.4
 Acne,706.2
 Adrenal Insufficiency,255.5 
 Alcohol Use,305.0
 Allergic Rhinitis,477.9
 Anxiety,300.00
+Aortic Stenosis,424.1
 Aspergers Syndrome,299.80
+Asthma,493.90
 Atopy,V15.09
+Back Pain,724.5
+Blastocystis Hominis Infection,129
+Body Pain,729.1
+Brain Fog,799.59
+Breast Cancer History,V10.3
+COPD,496
 Constipation,564
+Dementia,290.0
 Depression,311
-Diarrhea chronic,787.91
+Diabetes,250.00
+Diabetes Type ONE,250.01
+Diabetes Type TWO,250.00
+Diarrhea,787.91
 Diverticulosis,562.10
-Dysbiosis,K63.9
+Dysbiosis,569.9
+Dysglycemia,271.8
 Eczema,692.89
 Elevated Blood Pressure,796.2
+Elevated androgens,259.9
+Elevated iron and ferritin,790.6
+Endocrine Disorder, unspec,259.9
 Eosinophillia,D72.1
 Fatigue,780.79
 Fatty Liver,K76.0
 Fatty Pancreas,K86.8
 Fibroids,218.9
-Food Intolerance,579.8
+Food Intolerance,995.7
 Gas and Bloating,787.3
 Graves Disease,242.0
+HPV,R87.810
+Hair Loss,704.09
 Hashimotos,245.2
 Heartburn,787.1
 Hemorrhoids,455
-Herpes Zoster,B02.9
 Hepatitis C,070.54
-HPV,R87.810
-Hyperlipidemia,E78.2
+Herpes Zoster,B02.9
+High Cortisol,255.3
+High Cortisol,255.3
+Hyperlipidemia,272.2
+Hypertension,796.2
+Hypochlorhydria,536.8
 Hypothyroid iatrogenic,244.8
 Hypothyroid unspec,244.9
 IBS,546.1
 Insomina,G47.00
 Insomnia with sleep,apnea,780.51
+Internal hordeolum,373.12
+Low DHEA,259.9
+Low SIgA,279.01
 Low Self-Esteem,R45.81
 MVP,I34.1
+Malabsorption,579.9
 Melasma,709.09
 Menorrhagia,626.2
+Migraine,346.90
 Multiple Sclerosis,340
+Nausea,787.02
 Neutropenia,D70.9
+Nocturia,788.43
+Nutritional Deficiency,269.9
 Obesity,278.00
+Oligomenorrhea,626.1
+Osteopenia,733.90
 Overweight,278.02
 Pain,780.96
-Polypharmacy,977.9Hypertension,796.2
+Panic Attacks,300.01
+Plantar Warts,078.12
+Polypharmacy,977.9
 Post-menopausal,Z78.0
+Prediabetes,790.29
 Psoriasis,696.1
 Rash,782.1
 SIBO,008.5
+Sleep Apnea,780.57
+Sleep Cycle Disruption,307.45
 Stress,308.9
-Migraine,346.90
+Weight Gain,783.1
+Wrist Pain,719.43
+Yeast Vaginitis,616.10

@@ -47,12 +47,18 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
 
 \begin{document}
 
+<% if patient.medications.count + patient.problems.count > 40 %>
+\begin{wrapfigure}{r}{3in}
+<% else %>
 \begin{wrapfigure}{r}{2.2in}
+<% end %>
+
 
   \begin{sidebox}[frametitle=\textsf{Problem List}]
     <% if patient.problems and patient.problems.count > 0 %>
     \begin{boxitemize}
-      \raggedright
+      \raggedright     
+      \footnotesize
       <% patient.problems.each do |p| %>
         \item <%= p.diagnosis %>
               <%= "(#{p.icd9})" unless p.icd9.nil? %> <%= "[#{p.note}]" unless p.note.nil? %>
@@ -68,7 +74,8 @@ DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
   \begin{sidebox}[frametitle=\textsf{Currently Taking}]
     <% if patient.medications and patient.medications.count > 0 %>
     \begin{boxitemize}
-      \raggedright
+      \raggedright   
+      \footnotesize
       <% patient.medications.each do |m| %>
         \item <%= m.name %>
               <%= "(#{m.dose})" unless m.dose.nil? %>  <%= "[#{m.note}]" unless m.note.nil? %>

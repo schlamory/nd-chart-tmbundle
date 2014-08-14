@@ -9,7 +9,7 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{NDChart}
 \AtEndOfClass{\RequirePackage{microtype}}
-\LoadClass[11pt]{article}
+\LoadClass[10pt]{article}
 
 \RequirePackage{times}      % Loads the Times-Roman Fonts
 \RequirePackage{mathptmx}   % Loads the Times-Roman Math Fonts
