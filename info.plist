@@ -8,6 +8,8 @@
 	<string>Amory Schlender</string>
 	<key>description</key>
 	<string>New shiny bundle for X.</string>
+	<key>isDisabled</key>
+	<true/>
 	<key>name</key>
 	<string>ND Chart</string>
 	<key>uuid</key>
