@@ -1,95 +1,151 @@
 name,icd_9
 Abdominal Pain,789.0
 Abdominal Pain,789.0
+Abnormal Hormone Test,796.4
 Abnormal Lab Finding,796.4
 Abnormal Lab Result,796.4
 Abnormal Lab Test,796.4
-Abnormal hormone test,796.4
 Acne,706.2
 Adrenal Insufficiency,255.5 
 Alcohol Use,305.0
 Allergic Rhinitis,477.9
+Allergies,995.3
+Allergy,V15.09
+Amenorrhea,626.0
+Anemia, unspec,285.9
+Annual gyn exam,V72.31
 Anxiety,300.00
+Anxiety State,300
 Aortic Stenosis,424.1
 Aspergers Syndrome,299.80
 Asthma,493.90
 Atopy,V15.09
+BPH,600.01
 Back Pain,724.5
 Blastocystis Hominis Infection,129
 Body Pain,729.1
 Brain Fog,799.59
 Breast Cancer History,V10.3
 COPD,496
+Candida, nails,112.3
+Candidiasis Intestinal,112.9
+Celiac,579.0
+Cervical Dysplasia,622.10
+Chest Pain,786.50
+Chronic urticaria,708.8
+Coated Tongue,529.3
+Cognitive Dissonance,z60.9
+Colitis,009.1
 Constipation,564
+Crohn's Disease,555.9
+Decreased Sex Drive,799.81
 Dementia,290.0
 Depression,311
 Diabetes,250.00
-Diabetes Type ONE,250.01
-Diabetes Type TWO,250.00
+@@  Diabetes Type TWO,250.00
 Diarrhea,787.91
 Diverticulosis,562.10
+Dry skin,709.9
 Dysbiosis,569.9
 Dysglycemia,271.8
+Dysmenorrhea,625.3
+EBV,075
 Eczema,692.89
+Elevated BP,796.2
 Elevated Blood Pressure,796.2
+Elevated Cortisol,255.3
 Elevated androgens,259.9
 Elevated iron and ferritin,790.6
 Endocrine Disorder, unspec,259.9
 Eosinophillia,D72.1
+Erythromelagia,443.82
+Essential Tremor,333.1
 Fatigue,780.79
 Fatty Liver,K76.0
 Fatty Pancreas,K86.8
 Fibroids,218.9
 Food Intolerance,995.7
+GERD,530.81
 Gas and Bloating,787.3
+Gout,274.00
 Graves Disease,242.0
 HPV,R87.810
 Hair Loss,704.09
 Hashimotos,245.2
+Headache,784.0
 Heartburn,787.1
 Hemorrhoids,455
 Hepatitis C,070.54
 Herpes Zoster,B02.9
 High Cortisol,255.3
-High Cortisol,255.3
+Hodgkin's Lymphoma,z85.71
+Hot Flashes,627.2
 Hyperlipidemia,272.2
 Hypertension,796.2
+Hyperthyroid,242.00
 Hypochlorhydria,536.8
+Hypothyroid,244.9
 Hypothyroid iatrogenic,244.8
 Hypothyroid unspec,244.9
 IBS,546.1
+Inappropriate Diet,Z72.4
 Insomina,G47.00
 Insomnia with sleep,apnea,780.51
 Internal hordeolum,373.12
+Itching,698.9
+Joint Pain,719.4
 Low DHEA,259.9
+Low Immunity,279.3
+Low Libido,799.81
 Low SIgA,279.01
-Low Self-Esteem,R45.81
+Low SelfLow Sex Drive,799.81
 MVP,I34.1
 Malabsorption,579.9
 Melasma,709.09
+Memory Loss,780.93
 Menorrhagia,626.2
 Migraine,346.90
+Mood Swings,296.99
 Multiple Sclerosis,340
+Myalgia,729.1
+Myometriosis,615.9
+Nabothian Cyst,616.0
 Nausea,787.02
 Neutropenia,D70.9
 Nocturia,788.43
+Nutrient Deficiency,269.9
 Nutritional Deficiency,269.9
+OCD,300.3
 Obesity,278.00
 Oligomenorrhea,626.1
 Osteopenia,733.90
+Ovarian Cyst,620.2
 Overweight,278.02
 Pain,780.96
 Panic Attacks,300.01
+Perimenopause,627.2
+Perioral Dermatitis,695.3
 Plantar Warts,078.12
 Polypharmacy,977.9
-Post-menopausal,Z78.0
+Poor Diet,Z72.4
+Poor social environment,z60.9
+PostPostpartum Mood Disorder,648.44
+Postpartum State,V24.2
 Prediabetes,790.29
 Psoriasis,696.1
 Rash,782.1
+Resection of ileum,V45.72
 SIBO,008.5
-Sleep Apnea,780.57
+Screening,V70.0
+Sleep Apnea,780.59
 Sleep Cycle Disruption,307.45
 Stress,308.9
+Tachycardia,785.0
+Tobacco use,V69.8
+Vegan,Z72.4
+Vertigo,386.19
 Weight Gain,783.1
+Wellness,Z00.8
 Wrist Pain,719.43
+Xerostomia,527.7
 Yeast Vaginitis,616.10
