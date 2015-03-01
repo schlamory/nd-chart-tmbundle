@@ -47,7 +47,7 @@ module Nd
       end
     end
 
-    def initialize_file_with_template_if_absent(file_path,template_name)
+    def initialize_file_with_template_if_absent(file_path, template_name)
       unless File.exists? file_path
         text = render_file template_path template_name
         File.write(file_path, text)

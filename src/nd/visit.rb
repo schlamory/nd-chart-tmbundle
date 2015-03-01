@@ -72,30 +72,35 @@ module Nd
   class Visit < Serializable
     attr_accessor :date, :patient
 
-    def preview_progress_note
+    def preview_note(note_type)
       create_dir_if_absent
-      File.write progress_note_tex_path, progress_note_tex
-      pdflatex progress_note_tex_path
-      open_file_with_shell progress_note_pdf_path
+      File.write note_tex_path(note_type), note_tex(note_type)
+      pdflatex note_tex_path(note_type)
+      open_file_with_shell note_pdf_path(note_type)
     end
 
-    def finalize_progress_note
-      if File.exists? final_progress_note_pdf_path
-        raise "\n\nA finalized progress note (#{final_progress_note_pdf_path}) already exists!\n\n"
+    def finalize_note(note_type)
+      if File.exists? final_note_pdf_path(note_type)
+        raise "\n\nA finalized #{note_type} note (#{final_note_pdf_path(note_type)}) already exists!\n\n"
       end
 
       create_dir_if_absent
-      unless File.exists? progress_note_tex_path
-        File.write progress_note_tex_path, progress_note_tex
-        pdflatex progress_note_tex_path
+      unless File.exists? note_tex_path(note_type)
+        File.write note_tex_path(note_type), note_tex(note_type)
+        pdflatex note_tex_path(note_type)
       end
-      pdflatex progress_note_tex_path
-      FileUtils.cp(progress_note_pdf_path, final_progress_note_pdf_path)
-      open_file_with_shell final_progress_note_pdf_path
+      pdflatex note_tex_path(note_type)
+      FileUtils.cp(note_pdf_path(note_type), final_note_pdf_path(note_type))
+      open_file_with_shell final_note_pdf_path(note_type)
     end
 
-    def final_progress_note_pdf_path
-      File.expand_path(date.strftime("%Y_%m_%d") + "_note.pdf", patient.dir_path)
+    def final_note_pdf_path(note_type)
+      suffix = case note_type
+      when "progress" then "note"
+      when "encounter" then "encounter_note"
+      end
+
+      File.expand_path("#{date.strftime('%Y_%m_%d')}_#{suffix}.pdf", patient.dir_path)
     end
 
     def date
@@ -131,30 +136,30 @@ module Nd
       File.expand_path(date.strftime("%Y_%m_%d"), patient.visits_dir_path)
     end
 
-    def progress_note_body_path
-      File.expand_path("progress_note_body.md",dir_path)
+    def note_body_path(note_type)
+      File.expand_path("#{note_type}_note_body.md",dir_path)
     end
 
-    def progress_note_tex_path
-      File.expand_path("progress_note.tex",tex_dir_path)
+    def note_tex_path(note_type)
+      File.expand_path("#{note_type}_note.tex",tex_dir_path)
     end
 
-    def progress_note_pdf_path
-      File.expand_path("progress_note.pdf",tex_dir_path)
+    def note_pdf_path(note_type)
+      File.expand_path("#{note_type}_note.pdf",tex_dir_path)
     end
 
-    def progress_note_body_tex
+    def note_body_tex(note_type)
       opts = {auto_ids: false, visit: self}
-      Kramdown::Document.new(File.read(progress_note_body_path), opts).to_latex
+      Kramdown::Document.new(File.read(note_body_path(note_type)), opts).to_latex
     end
 
-    def progress_note_tex
-      render_file(template_path "progress_note.tex")
+    def note_tex(note_type)
+      render_file(template_path "#{note_type}_note.tex")
     end
 
-    def initialize_files_if_absent
+    def initialize_files_if_absent(note_type)
       create_dir_if_absent
-      initialize_file_with_template_if_absent progress_note_body_path, "progress_note_body.md"
+      initialize_file_with_template_if_absent note_body_path(note_type), "#{note_type}_note_body.md"
     end
 
     def create_dir_if_absent

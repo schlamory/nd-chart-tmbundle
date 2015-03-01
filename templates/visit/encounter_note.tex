@@ -1,0 +1,59 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{NDChart}
+
+%----------------------------------------------------------------------------------------
+%	HEADER
+%----------------------------------------------------------------------------------------
+
+\fancyhf{}  %this removes page numbering at the bottom of the page
+\newcommand{\pagenumber}{{\large \thepage\ of\ \pageref{LastPage}}}
+
+\newcommand{\contact}{{\large
+Dr. Laura Figoski, ND
+\  $|$ \
+(415) 617-9252
+\ $|$ \
+doctor@lauranaturopath.com
+}}
+\newcommand{\vdate}{
+ Date of Service: <%= date.strftime "%Y/%-m/%-d" %>
+}
+
+\newcommand{\patient}{
+Name: <%= patient.first_name %> <%= patient.last_name %>
+\hfill
+Gender: <%= patient.gender %>
+\hfill
+Age: <%= patient.age %>
+\hfill
+DOB: <%= patient.date_of_birth.strftime "%Y/%-m/%-d" %>
+}
+
+\lhead{\contact \hfill \pagenumber \\ \vspace{11pt} \vdate \\ \patient}
+
+%----------------------------------------------------------------------------------------
+%	FOOTER
+%----------------------------------------------------------------------------------------
+
+\lfoot{4255 18th St \\ San Francisco, CA 94117}
+\rfoot{Fax: (415) 921-1345 \\ www.lauranaturopath.com}
+
+%----------------------------------------------------------------------------------------
+%	FOOTER
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+<%= progress_note_body_tex %>
+
+\vfill
+\nopagebreak[4]
+\begin{flushright}
+Signature: \underline{\hspace{2.5in}}\\
+Dr. Laura Figoski, ND
+\end{flushright}
+
+\end{document}
