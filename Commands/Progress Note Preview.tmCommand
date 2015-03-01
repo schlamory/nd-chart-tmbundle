@@ -11,11 +11,12 @@ require ENV["ND_CHART_BUNDLE"] + "/src/nd"
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
 
 note_type = case ENV["TM_FILENAME"]
-when "progress_note.md" then "progress"
-when "encounter_note.md" then "encounter"
+when "progress_note_body.md" then "progress"
+when "encounter_note_body.md" then "encounter"
+else raise "\n\nI don't know how to render files like #{ENV['TM_FILENAME']}\n\n"
 end
 
-visit.preview_note(note_type)
+visit.preview_note("progress")
 
 </string>
 	<key>input</key>

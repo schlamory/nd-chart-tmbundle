@@ -23,7 +23,7 @@ visit = Nd::Visit.new.tap do |v|
   v
 end
 
-note_type = "encounter"
+note_type = "progress"
 
 if File.exists? visit.note_body_path(note_type)
   raise "\n\nThere is already a #{note_type} note for #{visit.patient.name} on #{visit.date}.\n\n"
