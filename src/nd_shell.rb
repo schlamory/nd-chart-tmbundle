@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/bin/nd"
+require "~/Library/Application\ Support/Avian/Bundles/ND\ Chart.tmbundle/src/nd"
 
 
 def main

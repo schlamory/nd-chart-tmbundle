@@ -1,6 +1,7 @@
 name,icd_9
+ADHD,314.01
 Abdominal Pain,789.0
-Abdominal Pain,789.0
+Abdominal pain, RLQ,789.03
 Abnormal Hormone Test,796.4
 Abnormal Lab Finding,796.4
 Abnormal Lab Result,796.4
@@ -12,26 +13,31 @@ Allergic Rhinitis,477.9
 Allergies,995.3
 Allergy,V15.09
 Amenorrhea,626.0
-Anemia, unspec,285.9
+Angular Stomatitis,528.5
 Annual gyn exam,V72.31
 Anxiety,300.00
 Anxiety State,300
 Aortic Stenosis,424.1
+"Arthritis, Hand",715.04
 Aspergers Syndrome,299.80
 Asthma,493.90
 Atopy,V15.09
+Autism,299.0
 BPH,600.01
 Back Pain,724.5
+Barrett Esophagus,530.85
 Blastocystis Hominis Infection,129
 Body Pain,729.1
 Brain Fog,799.59
 Breast Cancer History,V10.3
+Bronchitis,490
 COPD,496
 Candida, nails,112.3
 Candidiasis Intestinal,112.9
 Celiac,579.0
 Cervical Dysplasia,622.10
 Chest Pain,786.50
+Chronic Pain,338.2
 Chronic urticaria,708.8
 Coated Tongue,529.3
 Cognitive Dissonance,z60.9
@@ -42,63 +48,86 @@ Decreased Sex Drive,799.81
 Dementia,290.0
 Depression,311
 Diabetes,250.00
-@@  Diabetes Type TWO,250.00
+Diabetes Type TWO,250.00
 Diarrhea,787.91
 Diverticulosis,562.10
+Dry Eyes,375.15
+Dry Mouth,527.7
 Dry skin,709.9
 Dysbiosis,569.9
 Dysglycemia,271.8
 Dysmenorrhea,625.3
 EBV,075
 Eczema,692.89
+Edema,782.3
 Elevated BP,796.2
 Elevated Blood Pressure,796.2
 Elevated Cortisol,255.3
+Elevated HgA1c,790.29
 Elevated androgens,259.9
 Elevated iron and ferritin,790.6
 Endocrine Disorder, unspec,259.9
 Eosinophillia,D72.1
+Equivocal *Entamoeba histolytica* Ab, SIgA 792.1
 Erythromelagia,443.82
 Essential Tremor,333.1
 Fatigue,780.79
 Fatty Liver,K76.0
 Fatty Pancreas,K86.8
 Fibroids,218.9
+Folliculitis,706.1
 Food Intolerance,995.7
+Food Sensitivity,995.7
 GERD,530.81
 Gas and Bloating,787.3
+Gingivitis,523.10
+Goiter,240.9
 Gout,274.00
 Graves Disease,242.0
-HPV,R87.810
+HIV Positive,042
+HPV,078.11
 Hair Loss,704.09
 Hashimotos,245.2
+Headache,784.0
 Headache,784.0
 Heartburn,787.1
 Hemorrhoids,455
 Hepatitis C,070.54
 Herpes Zoster,B02.9
 High Cortisol,255.3
+High Estrogen,256.0
+Hirsutism,704.1
 Hodgkin's Lymphoma,z85.71
 Hot Flashes,627.2
+Hx of Kidney Transplant,V42.0
+Hx of Kidney Transplant,V42.0
+Hyperhomocystinemia,279.4
+Hyperinsulinism,251.1
 Hyperlipidemia,272.2
 Hypertension,796.2
 Hyperthyroid,242.00
+Hypocalcemia,275.41
 Hypochlorhydria,536.8
 Hypothyroid,244.9
 Hypothyroid iatrogenic,244.8
 Hypothyroid unspec,244.9
+Hysterectomy,V88.01
 IBS,546.1
 Inappropriate Diet,Z72.4
 Insomina,G47.00
 Insomnia with sleep,apnea,780.51
 Internal hordeolum,373.12
+Interstitial Cystitis,595.1
+Intestinal Yeast,136.9
 Itching,698.9
 Joint Pain,719.4
 Low DHEA,259.9
 Low Immunity,279.3
 Low Libido,799.81
 Low SIgA,279.01
-Low SelfLow Sex Drive,799.81
+Low Sex Drive,799.81
+Low Vitamin D,268.9
+Lupus,710.0
 MVP,I34.1
 Malabsorption,579.9
 Melasma,709.09
@@ -107,6 +136,7 @@ Menorrhagia,626.2
 Migraine,346.90
 Mood Swings,296.99
 Multiple Sclerosis,340
+Muscle Spasm,728.85
 Myalgia,729.1
 Myometriosis,615.9
 Nabothian Cyst,616.0
@@ -117,10 +147,14 @@ Nutrient Deficiency,269.9
 Nutritional Deficiency,269.9
 OCD,300.3
 Obesity,278.00
+Occult Blood in Stool,792.1
 Oligomenorrhea,626.1
 Osteopenia,733.90
 Ovarian Cyst,620.2
+Overactive Bladder,596.51
 Overweight,278.02
+PCOS,256.4
+PMDD,625.4
 Pain,780.96
 Panic Attacks,300.01
 Perimenopause,627.2
@@ -128,24 +162,35 @@ Perioral Dermatitis,695.3
 Plantar Warts,078.12
 Polypharmacy,977.9
 Poor Diet,Z72.4
-Poor social environment,z60.9
+Poor Social Environment,z60.9
+Post Nasal Drip, 784.91
 PostPostpartum Mood Disorder,648.44
 Postpartum State,V24.2
 Prediabetes,790.29
+Premature Menopause,256.31
 Psoriasis,696.1
 Rash,782.1
 Resection of ileum,V45.72
+Respiratory condition due to specified external agent,508.9
 SIBO,008.5
 Screening,V70.0
+Shingles,053.9
 Sleep Apnea,780.59
 Sleep Cycle Disruption,307.45
 Stress,308.9
 Tachycardia,785.0
+Tinea Capitis,110.0
 Tobacco use,V69.8
+Toenail Fungus,110.1
+UTI,599.0
+Vaginitis,616.11
 Vegan,Z72.4
 Vertigo,386.19
+Vitamin D Deficiency,268.9
 Weight Gain,783.1
 Wellness,Z00.8
 Wrist Pain,719.43
 Xerostomia,527.7
 Yeast Vaginitis,616.10
+anemia,285.9
+name: Nutrient,950

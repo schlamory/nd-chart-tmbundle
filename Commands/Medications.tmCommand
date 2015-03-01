@@ -6,7 +6,7 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
+require ENV["ND_CHART_BUNDLE"] + "/src/nd"
 
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
 
