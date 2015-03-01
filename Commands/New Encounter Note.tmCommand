@@ -6,12 +6,12 @@
 	<string>nop</string>
 	<key>command</key>
 	<string>#!/usr/bin/env ruby
-require ENV["ND_CHART_BUNDLE"] + "/src/nd"
+require ENV["ND_CHART_BUNDLE"] + "/bin/nd"
 
 visit = Nd::Visit.new.tap do |v|
   v.patient = Nd::Patient.patient_for_dir ENV["TM_DIRECTORY"]
   if v.patient.nil?
-    raise "\n\nThe current directory (#{ENV["TM_DIRECTORY"]}) does not include a patient record. Try calling 'New Progress Note' from within the patient's patient.yml file.\n\n"
+    raise "\n\nThe current directory (#{ENV["TM_DIRECTORY"]}) does not include a patient record. Try calling 'New Encounter Note' from within the patient's patient.yml file.\n\n"
   end
   line = gets
   date = Nd.parse_date(line)
@@ -36,9 +36,9 @@ end
 	<key>inputFormat</key>
 	<string>text</string>
 	<key>keyEquivalent</key>
-	<string>@U</string>
+	<string>@E</string>
 	<key>name</key>
-	<string>New Progress Note</string>
+	<string>New Encounter Note</string>
 	<key>outputCaret</key>
 	<string>afterOutput</string>
 	<key>outputFormat</key>
@@ -46,7 +46,7 @@ end
 	<key>outputLocation</key>
 	<string>replaceInput</string>
 	<key>uuid</key>
-	<string>3AE52612-1C16-44A3-8116-4E4DD9961DB5</string>
+	<string>3AE52612-1C16-44A3-8116-4E4DD9961DB</string>
 	<key>version</key>
 	<integer>2</integer>
 </dict>

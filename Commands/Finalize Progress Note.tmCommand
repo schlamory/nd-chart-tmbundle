@@ -10,7 +10,13 @@ require ENV["ND_CHART_BUNDLE"] + "/src/nd"
 
 visit = Nd::Visit.initialize_from_dir ENV["TM_DIRECTORY"]
 
-visit.finalize_progress_note
+note_type = case ENV["TM_FILENAME"]
+when "progress_note.md" then "progress"
+when "encounter_note.md" then "encounter"
+end
+
+visit.finalize_note(note_type)
+
 </string>
 	<key>input</key>
 	<string>none</string>
